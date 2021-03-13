@@ -1,42 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import axios from 'axios'
 import { useState } from 'react'
 import "./Login.scss"
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-
-async function loginUser(credentials) {
-  return fetch('http://localhost:8080/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credentials)
-  })
-    .then(data => data.json())
- }
- 
-export default function Login({ setToken }) {
+export default function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [token, setToken] = useState();
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    const token = await loginUser({
-      username,
-      password
-    });
-    setToken(token);
-  }
-
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
-  }
-  
   return (
     <div className="Login">
-      <Form onSubmit={handleSubmit}>
+      <Form >
         <Form.Group size="lg" controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control
@@ -54,13 +30,10 @@ export default function Login({ setToken }) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Button block size="lg" type="submit" disabled={!validateForm()}>
+        <Button block size="lg" type="submit">
           Login
         </Button>
       </Form>
     </div>
   );
-}
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired
-}
+  }

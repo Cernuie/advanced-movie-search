@@ -16,6 +16,7 @@ import Login from './components/Login'
 import './App.css';
 
 function App() {
+  const [token, setToken] = useState();
 
   return (
     <Router>
@@ -38,7 +39,7 @@ function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/login">
-            <Login />
+            <Login setToken={setToken}/>
           </Route>
           <Route path="/register">
             <Register />
