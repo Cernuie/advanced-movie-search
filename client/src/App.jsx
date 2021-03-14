@@ -8,7 +8,7 @@ import {
   Link
 } from "react-router-dom";
 
-import Home from './components/Home';
+
 import Register from './components/Register';
 import Login from './components/Login'
 
@@ -45,7 +45,7 @@ function App() {
             <Register />
           </Route>
           <Route path="/">
-            <Home />
+
           </Route>
         </Switch>
       </div>

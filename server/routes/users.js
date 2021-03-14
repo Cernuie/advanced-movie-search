@@ -28,13 +28,19 @@ router.post('/login', (req, res) => {
 
   getUsersFromEmail(email)
     .then((res) => {
-      console.log(res)
+      if (!res) {
+        console.log("wrong email")
+      } else {
+        console.log(bcrypt.compareSync(password, res.password))
+
+        if (bcrypt.compareSync(password, res.password)) {
+          console.log("authenticated")
+        } else {
+          console.log("wrong password")
+        }
+      }
     })
-    if (!res) {
-      console.log("failed")
-    } else {
-      console.log("passed")
-    }
+
 })
 
   return router;
