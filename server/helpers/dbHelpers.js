@@ -7,20 +7,16 @@ const pool = new Pool({
   database: 'finals'
 });
 
-const getUsersFromEmail = () => {
+const getUsersFromEmail = (email) => {
     const queryString = `
     SELECT * FROM users
-    WHERE id = $1;
+    WHERE email = $1;
     `;
     const queryParams = [email]
 
     return pool.query(queryString, queryParams)
-    .then(result => {
-      if (result.rows == null) {
-        return null;
-      } else {
-        return result.rows[0]
-      }
+    .then(res => {
+      return res.rows
     })
   }
 

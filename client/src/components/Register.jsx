@@ -11,18 +11,12 @@ export default function Register(props) {
 
   const register = (email, password) => {
     const url = "/api/users/register"
-    const data = {
-      email: email,
-      password: password
-    }
+
     return axios
-      .post(url, data)
+      .post(url, {email, password})
       .then(res => {
         console.log(res)
       })
-      .catch(error => {
-        console.log(error.response.data);
-      }) 
   }
 
   const validate = () => {
