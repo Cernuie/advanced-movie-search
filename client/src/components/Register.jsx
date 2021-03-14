@@ -10,10 +10,12 @@ export default function Register(props) {
   const [message, setMessage] = useState("");
 
   const register = () => {
+    console.log(email)
+    console.log(password)
     return axios
-      .post("http://localhost:8080/login", {
-        email,
-        password
+      .post("/api/users/register", {
+        email: email,
+        password: password
       })
       .then(res => {
         if (res.data) {
@@ -33,7 +35,7 @@ export default function Register(props) {
       return;
     } else {
       setMessage("");
-      register(username, email, password)
+      register( email, password)
       .catch(err => setMessage(err.response.data.error));
     }
   }
@@ -58,7 +60,7 @@ export default function Register(props) {
             </label>
             <input type="password" placeholder="Enter password" value={password} onChange={event => setPassword(event.target.value)}/>
           </div>
-          <button> type="button" onClick={validate}</button>
+          <button type="button" onClick={validate}>Submit</button>
         </form>
       </div>
     </section>

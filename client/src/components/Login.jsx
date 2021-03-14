@@ -10,7 +10,7 @@ export default function Login(props) {
 
   const handleSubmit = (event) => {
     axios.post(
-      "http://localhost:8080/login",
+      "/api/users/login",
       {
       email: email,
       password: password
