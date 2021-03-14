@@ -42,3 +42,21 @@ display: flex;
 justify-content: space-between;
 flex-wrap: wrap;
 }
+
+.search {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.centre {
+  display: flex;
+  justify-content: center;
+}
+
+html {
+  background: midnightblue;
+  color: white;
+}

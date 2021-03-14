@@ -10,23 +10,40 @@ const axios = require("axios");
 
 function App() {
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState();
+
   return (
     <Router>
-      <div className="App">
-        <h1>Advanced Movie Search App:</h1>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/register">Register</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <h1 class="centre">Advanced Movie Search App:</h1>
         <Switch>
-          <Route path="/" exact>
-            <MovieSearch />
-          </Route>
           <Route path="/login">
-            <Login setUser={setUser} />
+            <Login setToken={setToken} />
           </Route>
           <Route path="/register">
-            <Register setUser={setUser} />
+            <Register />
+          </Route>
+          <Route path="/" exact>
+            <MovieSearch />
           </Route>
         </Switch>
       </div>
     </Router>
   );
 }
+
 export default App;

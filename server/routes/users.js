@@ -1,25 +1,47 @@
-/*
- * All routes for Users are defined here
- * Since this file is loaded in server.js into api/users,
- *   these routes are mounted onto /users
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
- */
-
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
+const bcrypt = require('bcrypt');
+const { getUsersFromEmail, addUser } = require('../helpers/dbHelpers');
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then(data => {
-        const users = data.rows;
-        res.json({ users });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
+  router.post('/register', (req, res) => {
+    const email = req.body.email
+    const password = req.body.password
+    getUsersFromEmail(email)
+      .then((res) => {
+        console.log(res)
+      if (!res) {
+        const hashedPassword = bcrypt.hashSync(password, process.env.SALT_ROUNDS | 0)
+        addUser(email, hashedPassword)
+        .then(res =>
+          console.log("passed")
+          )
+      }
+      else {
+        console.log("failed")
+      }
+    })
+})
+router.post('/login', (req, res) => {
+  const email = req.body.email
+  const password = req.body.password
+
+  getUsersFromEmail(email)
+    .then((res) => {
+      if (!res) {
+        console.log("wrong email")
+      } else {
+        console.log(bcrypt.compareSync(password, res.password))
+
+        if (bcrypt.compareSync(password, res.password)) {
+          console.log("authenticated")
+        } else {
+          console.log("wrong password")
+        }
+      }
+    })
+
+})
+
   return router;
-};
+}
