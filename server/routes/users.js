@@ -10,7 +10,7 @@ module.exports = (db) => {
     getUsersFromEmail(email)
       .then((res) => {
         console.log(res)
-      if (res === []) {
+      if (!res) {
         const hashedPassword = bcrypt.hashSync(password, process.env.SALT_ROUNDS | 0)
         addUser(email, hashedPassword)
         .then(res =>

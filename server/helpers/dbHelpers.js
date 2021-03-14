@@ -16,7 +16,7 @@ const getUsersFromEmail = (email) => {
 
     return pool.query(queryString, queryParams)
     .then(res => {
-      return res.rows
+      return res.rows[0]
     })
   }
 
