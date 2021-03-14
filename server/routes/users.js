@@ -23,12 +23,18 @@ module.exports = (db) => {
     })
 })
 router.post('/login', (req, res) => {
-  const {
-    email,
-    password
-  } = req.body;
+  const email = req.body.email
+  const password = req.body.password
 
-  console.log('req', req)
+  getUsersFromEmail(email)
+    .then((res) => {
+      console.log(res)
+    })
+    if (!res) {
+      console.log("failed")
+    } else {
+      console.log("passed")
+    }
 })
 
   return router;

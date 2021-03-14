@@ -35,7 +35,6 @@ export default function Login(props) {
     } else {
       setMessage("");
       handleSubmit(email, password)
-      .catch(err => setMessage(err.response.data.error));
     }
   }
 
