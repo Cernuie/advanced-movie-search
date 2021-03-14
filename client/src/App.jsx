@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Home from "./components/Home";
+
 import Login from "./components/Login";
 import Register from "./components/Register";
 import "./App.css";
-import Search from "./components/Search";
+import MovieSearch from "./components/MovieSearch";
 
 const axios = require("axios");
 
@@ -16,7 +16,7 @@ function App() {
         <h1>Advanced Movie Search App:</h1>
         <Switch>
           <Route path="/" exact>
-            <Search />
+            <MovieSearch />
           </Route>
           <Route path="/login">
             <Login setUser={setUser} />

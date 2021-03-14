@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Movie(props) {
+export default function MovieDetails(props) {
 
   return (
     <article className="Movie">
