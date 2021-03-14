@@ -9,21 +9,20 @@ export default function Register(props) {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const register = () => {
-    console.log(email)
-    console.log(password)
+  const register = (email, password) => {
+    const url = "/api/users/register"
+    const data = {
+      email: email,
+      password: password
+    }
     return axios
-      .post("/api/users/register", {
-        email: email,
-        password: password
-      })
+      .post(url, data)
       .then(res => {
-        if (res.data) {
-          localStorage.setItem("token", JSON.stringify(res.data.token));
-          props.setToken(res.data.token);
-        }
-        return res.data;
+        console.log(res)
       })
+      .catch(error => {
+        console.log(error.response.data);
+      }) 
   }
 
   const validate = () => {

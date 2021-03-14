@@ -8,7 +8,7 @@ export default function Login(props) {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (email, password) => {
     axios.post(
       "/api/users/login",
       {
@@ -49,12 +49,12 @@ export default function Login(props) {
         
         <form onSubmit={event => event.preventDefault()}>
           <div>
-            <label htmlFor="exampleInputEmail1">Email address</label>
+            <label>Email address</label>
             <input type="email" placeholder="Enter email" value={email} onChange={event => setEmail(event.target.value)}/>
           </div>
           <div>
             <label htmlFor="exampleInputPassword1">Password</label>
-            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" value={password} onChange={event => setPassword(event.target.value)}/>
+            <input type="password"  placeholder="Password" value={password} onChange={event => setPassword(event.target.value)}/>
           </div>
           <button type="button" onClick={validateForm}>Submit</button>
         </form>
