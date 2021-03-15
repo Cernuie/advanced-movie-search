@@ -6,8 +6,6 @@ import Register from "./components/Register";
 import "./App.css";
 import MovieSearch from "./components/MovieSearch";
 
-const axios = require("axios");
-
 function App() {
   const [user, setUser] = useState(null);
   return (

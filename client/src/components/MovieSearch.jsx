@@ -1,21 +1,21 @@
 import React, { Fragment, useState, useEffect } from "react";
-// import axios from "axios";
+import axios from "axios";
 
 import SearchBar from "./SearchBar";
-import Results from "./Results"
-const axios = require('axios');
+import Results from "./Results";
+// const axios = require("axios");
 
 export default function MovieSearch() {
   const [term, setTerm] = useState("");
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    const apiUrl = `https://www.omdbapi.com/?s=${term}&apikey=4a3b711b`
-    
-    axios.get(apiUrl)
+    const apiUrl = `https://www.omdbapi.com/?s=${term}&apikey=4a3b711b`;
+
+    axios
+      .get(apiUrl)
       .then((response) => {
-        console.log(response.data )
-        console.log(response.data.Search);
+        console.log("movieSearch", response.data.Search);
         setResults([...response.data.Search]);
       })
       .catch((e) => console.log(`error ${e}`));
@@ -24,7 +24,7 @@ export default function MovieSearch() {
   return (
     <Fragment>
       <div>
-        <SearchBar onSearch={term => setTerm(term)} />
+        <SearchBar onSearch={(term) => setTerm(term)} />
         <Results results={results} />
       </div>
     </Fragment>
