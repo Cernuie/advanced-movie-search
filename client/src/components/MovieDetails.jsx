@@ -8,10 +8,10 @@ export default function MovieDetails(props) {
     setView("show");
   };
 
-  useEffect(() => {
-    const apiUrl = `https://www.omdbapi.com/?i=${props.imdbID}&apikey=4a3b711b`;
-    axios.get(apiUrl).then((response) => console.log("here", response.data));
-  }, [view]);
+  // useEffect(() => {
+  //   const apiUrl = `https://www.omdbapi.com/?i=${props.imdbID}&apikey=4a3b711b`;
+  //   axios.get(apiUrl).then((response) => console.log("here", response.data));
+  // }, [view]);
 
   return (
     <article className="Movie">
