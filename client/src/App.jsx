@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import "./App.css";
 import MovieSearch from "./components/MovieSearch";
+import { SpecificMovie } from "./components/SpecificMovie";
 
 const axios = require("axios");
 
@@ -37,9 +38,13 @@ function App() {
           <Route path="/register">
             <Register />
           </Route>
+          <Route path="/:id" component={SpecificMovie}> 
+          </Route>
+          
           <Route path="/" exact>
             <MovieSearch />
           </Route>
+
         </Switch>
       </div>
     </Router>
