@@ -1,16 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 
 export default function MovieDetails(props) {
   const [view, setView] = useState("start");
 
   const triggerMovieOverview = () => {
     setView("show");
-  };
-
-  const resetMovieList = () => {
-    setView("start");
   };
 
   useEffect(() => {
