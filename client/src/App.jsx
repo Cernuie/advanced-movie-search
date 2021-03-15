@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import "./App.css";
 import MovieSearch from "./components/MovieSearch";
+import MovieOverview from "./components/MovieOverview";
 
 import MovieCarousel from "./components/MovieCarousel";
 const axios = require('axios');
@@ -16,7 +17,6 @@ function App() {
   const apiUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=b982a0ac1f7e5b7165da37d7d73cfb13&language=en-US&page=1`;
 
   const posterUrl = 'https://image.tmdb.org/t/p/original/';
-
 
   useEffect(() => {
 
@@ -31,24 +31,6 @@ function App() {
 
     })
   }, []);
-
-
-
-
-
-
-
-  // useEffect(() => {
-  //   const apiUrl = `https://www.omdbapi.com/?s=${term}&apikey=4a3b711b`;
-
-  //   axios
-  //     .get(apiUrl)
-  //     .then((response) => {
-  //       console.log("movieSearch", response.data.Search);
-  //       setResults([...response.data.Search]);
-  //     })
-  //     .catch((e) => console.log(`error ${e}`));
-  // }, [term]);
 
   return (
     <Router>
@@ -69,6 +51,9 @@ function App() {
 
         <h1 class="centre">Advanced Movie Search App:</h1>
         <Switch>
+          <Route path="/movie/:id">
+            <MovieOverview />
+          </Route>
           <Route path="/login">
             <Login setToken={setToken} />
           </Route>
