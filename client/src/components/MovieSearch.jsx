@@ -24,7 +24,7 @@ export default function MovieSearch() {
   return (
     <Fragment>
        <SearchBar onSearch={(term) => setTerm(term)} />
-      <div>
+      <div class="movieStyles">
         <Results results={results} />
       </div>
     </Fragment>
