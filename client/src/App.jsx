@@ -6,9 +6,51 @@ import Register from "./components/Register";
 import "./App.css";
 import MovieSearch from "./components/MovieSearch";
 
+import MovieCarousel from "./components/MovieCarousel";
+const axios = require('axios');
+
 function App() {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState();
+  const [movies, setMovies] = useState([]);
+  const apiUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=b982a0ac1f7e5b7165da37d7d73cfb13&language=en-US&page=1`;
+
+  const posterUrl = 'https://image.tmdb.org/t/p/original/';
+
+
+  useEffect(() => {
+
+    axios.get(apiUrl).then((response) => {
+      const data = response.data.results.map((m) => ({
+
+        id: m['id'],
+        backPoster: posterUrl + m['backdrop_path'],
+        title: m['title']
+
+      }))
+      console.log(data);
+      setMovies(data);
+
+    })
+  }, []);
+
+
+
+
+
+
+
+  // useEffect(() => {
+  //   const apiUrl = `https://www.omdbapi.com/?s=${term}&apikey=4a3b711b`;
+
+  //   axios
+  //     .get(apiUrl)
+  //     .then((response) => {
+  //       console.log("movieSearch", response.data.Search);
+  //       setResults([...response.data.Search]);
+  //     })
+  //     .catch((e) => console.log(`error ${e}`));
+  // }, [term]);
 
   return (
     <Router>
@@ -37,6 +79,7 @@ function App() {
           </Route>
           <Route path="/" exact>
             <MovieSearch />
+            <MovieCarousel movies={movies} />
           </Route>
         </Switch>
       </div>

@@ -60,3 +60,8 @@ html {
   background: midnightblue;
   color: white;
 }
+
+ul li img{
+ overflow: hidden;
+ max-width: 100%  
+}
