@@ -22,11 +22,9 @@ function App() {
 
     axios.get(apiUrl).then((response) => {
       const data = response.data.results.map((m) => ({
-
         id: m['id'],
         backPoster: posterUrl + m['backdrop_path'],
-        title: m['title']
-
+        title: m['title'],
       }))
       console.log(data);
       setMovies(data);

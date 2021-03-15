@@ -40,7 +40,7 @@ export default function MovieCarousel(props) {
             <img src={movie.backPoster} alt="alt"></img>
           </li>
           <li>
-            <h1>{movie.title}</h1>
+            {movie.title}
           </li>
         </ul>
       )}
