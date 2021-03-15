@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import "./App.css";
 import MovieSearch from "./components/MovieSearch";
+import MovieOverview from "./components/MovieOverview";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -15,6 +16,9 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <MovieSearch />
+          </Route>
+          <Route path="/movie/:id">
+            <MovieOverview />
           </Route>
           <Route path="/login">
             <Login setUser={setUser} />
