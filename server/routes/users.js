@@ -15,7 +15,10 @@ module.exports = (db) => {
         const hashedPassword = bcrypt.hashSync(password, process.env.SALT_ROUNDS | 0)
         addUser(email, hashedPassword)
         .then(user =>
-          console.log("passed")
+          res.json({
+            token: jsonwebtoken.sign({id: user.id }, process.env.JWT_KEY),
+            email: user.email
+          })
           )
       }
       else {
@@ -40,6 +43,7 @@ router.post('/login', (req, res) => {
           console.log(jsonwebtoken.sign({ id: user.id }, process.env.JWT_KEY))
           res.json({
             token: jsonwebtoken.sign({ id: user.id }, process.env.JWT_KEY),
+            email: user.email
           })
         } else {
           console.log("wrong password")
