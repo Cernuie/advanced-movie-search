@@ -4,7 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 import axios from 'axios';
 import { useHistory } from "react-router";
 
-export default function MovieCarousel(props) {
+export default function TVShowCarousel(props) {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -30,8 +30,8 @@ export default function MovieCarousel(props) {
 
   let history = useHistory();
 
-  const getMovieDetails = (movieID, history) => {
-    let url = `https://api.themoviedb.org/3/movie/${movieID}?api_key=b982a0ac1f7e5b7165da37d7d73cfb13&language=en-US`
+  const getShowDetails = (tvShowID, history) => {
+    let url = `https://api.themoviedb.org/3/tv/${tvShowID}/external_ids?api_key=b982a0ac1f7e5b7165da37d7d73cfb13&language=en-US`
 
     axios.get(url).then((response) => {
       const imdbID = response.data.imdb_id
@@ -46,15 +46,16 @@ export default function MovieCarousel(props) {
       <Carousel responsive={responsive} indicators="true" controls="false" draggable={false}
         infinite={true}
       >
-        {props.movies
+        {props.shows
           .filter(({ backPoster }) =>
             backPoster !== 'https://image.tmdb.org/t/p/original/null')
-          .map((movie, index) =>
+          .map((show, index) =>
             <div key={index}>
-              <img src={movie.backPoster} alt="alt" onClick={() => getMovieDetails(movie.id, history)}></img>
-              {movie.title}
+              <img src={show.backPoster} alt="alt" onClick={() => getShowDetails(show.id, history)} ></img>
+              {show.name}
             </div>
           )}
+
       </Carousel>
     </div>
   )

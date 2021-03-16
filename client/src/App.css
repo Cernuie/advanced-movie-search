@@ -65,3 +65,7 @@ ul li img{
  overflow: hidden;
  max-width: 100%  
 }
+
+.react-multi-carousel-item div {
+  padding-left: 40px;
+}

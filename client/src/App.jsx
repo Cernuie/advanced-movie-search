@@ -24,7 +24,7 @@ function App() {
             <Login {... {setUser}} />
           </Route>
           <Route path="/register">
-            <Register />
+            <Register {... {setUser}}/>
           </Route>
 
           <Route path="/" exact>
