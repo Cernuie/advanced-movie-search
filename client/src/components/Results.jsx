@@ -5,7 +5,9 @@ import MovieDetails from "./MovieDetails";
 export default function Results(props) {
   const { results } = props;
 
-  return results.map((movie) => {
+  const moviesWithPosters = results.filter((movie) => movie.Poster !== "N/A");
+
+  return moviesWithPosters.map((movie) => {
     return <MovieDetails key={movie.imdbID} {...movie} />;
   });
 }
