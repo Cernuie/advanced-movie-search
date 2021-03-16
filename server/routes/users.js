@@ -9,12 +9,12 @@ module.exports = (db) => {
     const email = req.body.email
     const password = req.body.password
     getUsersFromEmail(email)
-      .then((res) => {
-        console.log(res)
-      if (!res) {
+      .then((user) => {
+        console.log(user)
+      if (!user) {
         const hashedPassword = bcrypt.hashSync(password, process.env.SALT_ROUNDS | 0)
         addUser(email, hashedPassword)
-        .then(res =>
+        .then(user =>
           console.log("passed")
           )
       }
@@ -28,17 +28,18 @@ router.post('/login', (req, res) => {
   const password = req.body.password
 
   getUsersFromEmail(email)
-    .then((res) => {
-      console.log(res)
-      if (!res) {
+    .then((user) => {
+      console.log(user)
+      if (!user) {
         console.log("wrong email")
       } else {
-        console.log(bcrypt.compareSync(password, res.password))
+        console.log(bcrypt.compareSync(password, user.password))
 
-        if (bcrypt.compareSync(password, res.password)) {
+        if (bcrypt.compareSync(password, user.password)) {
           console.log("authenticated")
+          console.log(jsonwebtoken.sign({ id: user.id }, process.env.JWT_KEY))
           res.json({
-            token: jsonwebtoken.sign({ id: res.id }, process.env.JWT_SECRET)
+            token: jsonwebtoken.sign({ id: user.id }, process.env.JWT_KEY)
           })
         } else {
           console.log("wrong password")
