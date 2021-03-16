@@ -3,7 +3,7 @@ const router = express.Router();
 const jsonwebtoken = require('jsonwebtoken');
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
+  router.get("/favourites", (req, res) => {
     jsonwebtoken.verify(req.header)
   })
 }

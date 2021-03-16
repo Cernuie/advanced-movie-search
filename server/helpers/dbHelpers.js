@@ -36,3 +36,18 @@ const addUser = (email, password) => {
 }
 
 exports.addUser = addUser;
+
+
+const getFavouritesFromId = (id) => {
+  const queryString = `
+  SELECT * FROM favourites
+  WHERE user_id = $1
+  `
+  const queryParams = [id]
+
+  return pool.query(queryString, queryParams)
+  .then(res => {
+    console.log('res:', res)
+    return res
+  })
+}
