@@ -17,8 +17,13 @@ export default function Register(props) {
     return axios
       .post(url, {email, password})
       .then(res => {
-        console.log(res)
-      })
+        if (res.data) {
+          localStorage.setItem("token", JSON.stringify(res.data.token));
+          props.setUser(res.data.token);
+          history.push("/")
+        }
+        return res.data;
+      });
   }
 
   const validate = () => {
@@ -30,8 +35,7 @@ export default function Register(props) {
       return;
     } else {
       setMessage("");
-      register(email, password)
-      history.push("/")
+      register(email , password)
     }
   }
 
@@ -39,19 +43,19 @@ export default function Register(props) {
     <section>
       <div>
         <div>
-          <header>Register</header>
+          <header>Register:</header>
         </div>
         {message && <div className="alert alert-danger">{message}</div>}
         <form onSubmit={event => event.preventDefault()}>
           <div>
             <label>
-              Email Address
+              Email Address:
             </label>
             <input type="email" placeholder="Enter email" value={email} onChange={event => setEmail(event.target.value)}/>
           </div>
           <div>
             <label>
-              Password
+              Password:
             </label>
             <input type="password" placeholder="Enter password" value={password} onChange={event => setPassword(event.target.value)}/>
           </div>

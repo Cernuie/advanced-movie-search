@@ -47,18 +47,18 @@ export default function Login(props) {
     <section>
       <div>
       <div>
-        <header>Login</header>
+        <header>Login:</header>
         
         {message && <div>{message}</div>}
         
         <form onSubmit={event => event.preventDefault()}>
           <div>
-            <label>Email address</label>
+            <label>Email Address:</label>
             <input type="email" placeholder="Enter email" value={email} onChange={event => setEmail(event.target.value)}/>
           </div>
           <div>
-            <label>Password</label>
-            <input type="password"  placeholder="Password" value={password} onChange={event => setPassword(event.target.value)}/>
+            <label>Password:</label>
+            <input type="password"  placeholder="Enter password" value={password} onChange={event => setPassword(event.target.value)}/>
           </div>
           <button type="button" onClick={validateForm}>Submit</button>
         </form>
