@@ -2,11 +2,14 @@ import React from 'react';
 import axios from 'axios'
 import { useState } from 'react'
 import "./Login.scss"
+import { useHistory } from "react-router-dom";
+
 
 export default function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const history = useHistory();
 
   const handleSubmit = (email, password) => {
     axios.post(
@@ -21,6 +24,7 @@ export default function Login(props) {
       if (res.data) {
         localStorage.setItem("token", JSON.stringify(res.data.token));
         props.setUser(res.data.token)
+        history.push("/")
       }
       return res.data;
     })

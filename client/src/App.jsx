@@ -16,7 +16,6 @@ function App() {
     
     <Router>
       <div>
-       <div>{isLoggedIn()}</div>
         <nav>
           <ul>
             <li>
@@ -45,6 +44,7 @@ function App() {
             <Register />
           </Route>
           <Route path="/" exact>
+          <div>{isLoggedIn()}</div>
             <Home />
           </Route>
         </Switch>
