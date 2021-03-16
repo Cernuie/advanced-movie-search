@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-const axios = require('axios');
 
 export default function MovieCarousel(props) {
   const responsive = {
@@ -27,24 +26,19 @@ export default function MovieCarousel(props) {
     }
   };
 
-  console.log(props.movies)
-
   return (
     <div >
-    <Carousel responsive={responsive} indicators="true" controls="false" draggable={false}
-       infinite={true}
-    >
-      {props.movies.map((movie) =>
-        <ul>
-          <li>
+      <h1>{props.header}</h1>
+      <Carousel responsive={responsive} indicators="true" controls="false" draggable={false}
+        infinite={true}
+      >
+        {props.movies.map((movie) =>
+          <ul>
             <img src={movie.backPoster} alt="alt"></img>
-          </li>
-          <li>
             {movie.title}
-          </li>
-        </ul>
-      )}
-    </Carousel>
+          </ul>
+        )}
+      </Carousel>
     </div>
   )
 }
