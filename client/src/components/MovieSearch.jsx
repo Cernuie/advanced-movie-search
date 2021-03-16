@@ -8,22 +8,38 @@ import Results from "./Results";
 export default function MovieSearch() {
   const [term, setTerm] = useState("");
   const [results, setResults] = useState([]);
+  const [filter, setFilter] = useState("movies");
 
   useEffect(() => {
-    const apiUrl = `https://www.omdbapi.com/?s=${term}&apikey=4a3b711b`;
+    let apiUrl = "";
+    if (filter === "movies") {
+      apiUrl = `https://www.omdbapi.com/?s=${term}?&type=movie&apikey=4a3b711b`;
+    }
+    if (filter === "shows") {
+      apiUrl = `https://www.omdbapi.com/?s=${term}?&type=series&apikey=4a3b711b`;
+    }
+    
 
     axios
       .get(apiUrl)
       .then((response) => {
-        // console.log("movieSearch", response.data.Search);
-        setResults([...response.data.Search]);
+        const existingIds = new Set()
+        const filteredResponse = response.data.Search.filter((obj) => !existingIds.has(obj.imdbID) && existingIds.add(obj.imdbID))
+        setResults(filteredResponse);
       })
       .catch((e) => console.log(`error ${e}`));
-  }, [term]);
+  }, [term, filter]);
 
   return (
     <Fragment>
-       <SearchBar onSearch={(term) => setTerm(term)} />
+      <select
+        onChange={(event) => setFilter(event.target.value)}
+        value={filter}
+      >
+        <option value="movies">Movies</option>
+        <option value="shows">TV Shows</option>
+      </select>
+      <SearchBar onSearch={(term) => setTerm(term)} />
       <div className="movieStyles">
         <Results results={results} />
       </div>

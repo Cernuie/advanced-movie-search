@@ -38,7 +38,8 @@ export default function MovieOverview(props) {
         <p>{data.Plot}</p>
       </section>
       <section className="movie-details">
-        <h3>Movie Details</h3>
+        {data.Type === "movie" && <h3>Movie Details</h3>}
+        {data.Type === "series" && <h3>TV Show Details</h3>}
         <div>
           <p>Genres: {data.Genre}</p>
           {loopOverRatings(data.Ratings)}
@@ -47,7 +48,7 @@ export default function MovieOverview(props) {
       <section className="additional-data">
         <p>Production: {data.Production}</p>
         <p>BoxOffice: {data.BoxOffice}</p>
-        <p>{data.Awards}</p>
+        {data.Awards !== "N/A" && <p>{data.Awards}</p>}
       </section>
       <section>
         <h3>Cast & Crew</h3>
