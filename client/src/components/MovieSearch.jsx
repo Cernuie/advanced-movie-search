@@ -25,6 +25,7 @@ export default function MovieSearch() {
       .then((response) => {
         const existingIds = new Set()
         const filteredResponse = response.data.Search.filter((obj) => !existingIds.has(obj.imdbID) && existingIds.add(obj.imdbID))
+        // console.log("filtered:", filteredResponse)
         setResults(filteredResponse);
       })
       .catch((e) => console.log(`error ${e}`));
