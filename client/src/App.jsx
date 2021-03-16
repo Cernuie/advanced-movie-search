@@ -12,6 +12,19 @@ function App() {
   function isLoggedIn() {
     if (user) return `${user} is logged in`
   }
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("token");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    setUser("");
+    localStorage.clear();
+  }
   return (
     
     <Router>
@@ -28,7 +41,7 @@ function App() {
               <Link to="/register">Register</Link>
             </li>
             <li>
-              <Link to="/logout">Log Out</Link>
+              <button onClick={handleLogout}>Log Out</button>
             </li>
           </ul>
         </nav>
