@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 export default function NavBar(props) {
+  const history = useHistory();
 
   const handleLogout = () => {
     props.setUser("");
     localStorage.clear();
+    history.push("/")
   }
 
-  // function isLoggedIn() {
-  //   if (props.user) return `${props.user} is logged in`
-  // }
+  const isLoggedIn = props.user ? `${props.user} is logged in` : "";
 
-  const isLoggedIn = props.user ? `${props.user} is logged in` : ""
   useEffect(() => {
     const loggedInUser = localStorage.getItem("token");
     if (loggedInUser) {

@@ -15,13 +15,13 @@ function App() {
     <Router>
       <div>
         <h1 className="centre">Advanced Movie Search App:</h1>
-        <NavBar user={user} setUser={setUser} />
+        <NavBar {... {user, setUser}} />
         <Switch>
           <Route path="/movie/:id">
             <MovieOverview />
           </Route>
           <Route path="/login">
-            <Login setUser={setUser} />
+            <Login {... {setUser}} />
           </Route>
           <Route path="/register">
             <Register />

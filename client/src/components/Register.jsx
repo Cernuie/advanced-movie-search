@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 
 export default function Register(props) {
@@ -7,7 +8,9 @@ export default function Register(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const history = useHistory();
 
+ 
   const register = (email, password) => {
     const url = "/api/users/register"
 
@@ -27,8 +30,8 @@ export default function Register(props) {
       return;
     } else {
       setMessage("");
-      register( email, password)
-      .catch(err => setMessage(err.response.data.error));
+      register(email, password)
+      history.push("/")
     }
   }
 
