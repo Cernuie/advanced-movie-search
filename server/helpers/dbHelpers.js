@@ -51,3 +51,18 @@ const getFavouritesFromId = (id) => {
     return res
   })
 }
+
+const getMoviesFromFavourites = (id) => {
+  const queryString = `
+  SELECT * FROM media
+  JOIN favourites ON user.id = user_id
+  WHERE user_id = $1
+  `
+  const queryParams = [id]
+
+  return pool.query(queryString, queryParams)
+  .then(res => {
+    console.log('res:', res)
+    return res
+  })
+}
