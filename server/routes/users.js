@@ -39,7 +39,7 @@ router.post('/login', (req, res) => {
           console.log("authenticated")
           console.log(jsonwebtoken.sign({ id: user.id }, process.env.JWT_KEY))
           res.json({
-            token: jsonwebtoken.sign({ id: user.id }, process.env.JWT_KEY)
+            token: jsonwebtoken.sign({ id: user.id }, process.env.JWT_KEY),
           })
         } else {
           console.log("wrong password")
@@ -49,5 +49,8 @@ router.post('/login', (req, res) => {
 
 })
 
+router.delete('/logout', (req, res) => {
+  localStorage.clear("token");
+})
   return router;
 }
