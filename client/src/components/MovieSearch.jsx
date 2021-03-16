@@ -11,13 +11,21 @@ export default function MovieSearch() {
   const [filter, setFilter] = useState("movies");
 
   useEffect(() => {
-    const apiUrl = `https://www.omdbapi.com/?s=${term}&apikey=4a3b711b`;
+    let apiUrl = "";
+    if (filter === "movies") {
+      apiUrl = `https://www.omdbapi.com/?s=${term}?&type=movie&apikey=4a3b711b`;
+    }
+    if (filter === "shows") {
+      apiUrl = `https://www.omdbapi.com/?s=${term}?&type=series&apikey=4a3b711b`;
+    }
+    
 
     axios
       .get(apiUrl)
       .then((response) => {
-        // console.log("movieSearch", response.data.Search);
-        setResults([...response.data.Search]);
+        const existingIds = new Set()
+        const filteredResponse = response.data.Search.filter((obj) => !existingIds.has(obj.imdbID) && existingIds.add(obj.imdbID))
+        setResults(filteredResponse);
       })
       .catch((e) => console.log(`error ${e}`));
   }, [term, filter]);
