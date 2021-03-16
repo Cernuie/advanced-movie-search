@@ -9,6 +9,9 @@ const Home = () => {
     popularMovies,
     topRatedMovies, 
   } = useMovieList()
+
+  
+
   return(
     <>
       <MovieSearch />
@@ -16,7 +19,7 @@ const Home = () => {
       <MovieCarousel movies={topRatedMovies} header="Top Rated Movies:"/>
       <MovieCarousel movies={popularMovies} header="Popular Movies:"/>
       <MovieCarousel movies={upcomingMovies} header="Upcoming Movies:"/>
-   
+ 
     </>
   )
 }

@@ -66,7 +66,7 @@ const useMovieList = () => {
   //   const nowPlaying = doSomething(nowPlayingResponse)
   //   const [upcomingMovie,popularMovies, topRatedMovies] = otherResponses.map((resp) => movieResultsMapping(resp))
   // }
-  
+
   return {
     nowPlaying,
     upcomingMovies,

@@ -15,7 +15,7 @@ export default function MovieSearch() {
     axios
       .get(apiUrl)
       .then((response) => {
-        console.log("movieSearch", response.data.Search);
+        // console.log("movieSearch", response.data.Search);
         setResults([...response.data.Search]);
       })
       .catch((e) => console.log(`error ${e}`));
@@ -24,7 +24,7 @@ export default function MovieSearch() {
   return (
     <Fragment>
        <SearchBar onSearch={(term) => setTerm(term)} />
-      <div class="movieStyles">
+      <div className="movieStyles">
         <Results results={results} />
       </div>
     </Fragment>
