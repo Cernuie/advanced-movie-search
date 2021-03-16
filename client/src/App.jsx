@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -7,6 +7,7 @@ import MovieOverview from "./components/MovieOverview";
 import Home from "./components/Home";
 
 function App() {
+  const [token, setToken] = useState()
 
   return (
     <Router>
@@ -30,7 +31,7 @@ function App() {
             <MovieOverview />
           </Route>
           <Route path="/login">
-            <Login />
+            <Login setToken={setToken}/>
           </Route>
           <Route path="/register">
             <Register />

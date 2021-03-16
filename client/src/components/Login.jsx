@@ -17,6 +17,7 @@ export default function Login(props) {
       },
     )
     .then(res => {
+      console.log(res)
       if (res.data) {
         localStorage.setItem("token", JSON.stringify(res.data.token));
         props.setToken(res.data.token);
@@ -52,7 +53,7 @@ export default function Login(props) {
             <input type="email" placeholder="Enter email" value={email} onChange={event => setEmail(event.target.value)}/>
           </div>
           <div>
-            <label htmlFor="exampleInputPassword1">Password</label>
+            <label>Password</label>
             <input type="password"  placeholder="Password" value={password} onChange={event => setPassword(event.target.value)}/>
           </div>
           <button type="button" onClick={validateForm}>Submit</button>

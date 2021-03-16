@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const { getUsersFromEmail, addUser } = require('../helpers/dbHelpers');
+const jsonwebtoken = require('jsonwebtoken');
 
 module.exports = (db) => {
   router.post('/register', (req, res) => {
@@ -28,6 +29,7 @@ router.post('/login', (req, res) => {
 
   getUsersFromEmail(email)
     .then((res) => {
+      console.log(res)
       if (!res) {
         console.log("wrong email")
       } else {
@@ -35,6 +37,9 @@ router.post('/login', (req, res) => {
 
         if (bcrypt.compareSync(password, res.password)) {
           console.log("authenticated")
+          res.json({
+            token: jsonwebtoken.sign({ id: res.id }, process.env.JWT_SECRET)
+          })
         } else {
           console.log("wrong password")
         }
