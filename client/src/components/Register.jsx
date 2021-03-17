@@ -19,7 +19,8 @@ export default function Register(props) {
       .then(res => {
         if (res.data) {
           localStorage.setItem("token", JSON.stringify(res.data.token));
-          props.setUser(res.data.token);
+          props.setUser(res.data.email)
+          props.setToken(res.data.token)
           history.push("/")
         }
         return res.data;
