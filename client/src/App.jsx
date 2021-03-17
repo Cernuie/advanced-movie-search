@@ -24,7 +24,7 @@ function App() {
   return (
     <Router>
       <div>
-        <h1 className="centre">Advanced Movie Search App:</h1>
+        <h1 className="centre">ASC Prime Search</h1>
         <NavBar {... {user, setUser}} />
         <Switch>
           <Route path="/movie/:id">
