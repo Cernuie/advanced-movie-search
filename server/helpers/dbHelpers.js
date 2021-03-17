@@ -37,11 +37,12 @@ const addUser = (email, password) => {
 
 exports.addUser = addUser;
 
-
-const getFavouritesFromId = (id) => {
+const getMoviesFromFavorites = (id) => {
   const queryString = `
-  SELECT * FROM favourites
-  WHERE user_id = $1
+  SELECT media.* FROM media
+  JOIN favorites ON media.id = media_id
+  JOIN users ON users.id = user_id
+  WHERE user_id = $1;
   `
   const queryParams = [id]
 
@@ -52,17 +53,4 @@ const getFavouritesFromId = (id) => {
   })
 }
 
-const getMoviesFromFavourites = (id) => {
-  const queryString = `
-  SELECT * FROM media
-  JOIN favourites ON user.id = user_id
-  WHERE user_id = $1
-  `
-  const queryParams = [id]
-
-  return pool.query(queryString, queryParams)
-  .then(res => {
-    console.log('res:', res)
-    return res
-  })
-}
+exports.getMoviesFromFavorites = getMoviesFromFavorites
