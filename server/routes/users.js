@@ -36,8 +36,6 @@ router.post('/login', (req, res) => {
       if (!user) {
         console.log("wrong email")
       } else {
-        console.log(bcrypt.compareSync(password, user.password))
-
         if (bcrypt.compareSync(password, user.password)) {
           console.log("authenticated")
           console.log(jsonwebtoken.sign({ id: user.id }, process.env.JWT_KEY))

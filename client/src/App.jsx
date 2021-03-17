@@ -21,21 +21,22 @@ function App() {
     fetchAPI();
   }, [])
 
+  const [token, setToken] = useState("")
   return (
     <Router>
       <div>
         <h1 className="centre">Advanced Movie Search App:</h1>
-        <NavBar {... {user, setUser}} />
+        <NavBar {... {user,token, setToken, setUser}} />
         <Switch>
           <Route path="/movie/:id">
             <StreamablePlayer video={video} />
             <MovieOverview />
           </Route>
           <Route path="/login">
-            <Login {... {setUser}} />
+            <Login {... {setUser, setToken}} />
           </Route>
           <Route path="/register">
-            <Register {... {setUser}}/>
+            <Register {... {setUser, setToken}}/>
           </Route>
 
           <Route path="/" exact>
