@@ -37,8 +37,11 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 const usersRoutes = require("./routes/users");
+const favoritesRoute = require('./routes/favorites');
 
 app.use('/api/users', usersRoutes(db));
+app.use('/api/favorites', favoritesRoute(db));
+
 app.get("/", (req, res) => {
   res.render("index");
 });

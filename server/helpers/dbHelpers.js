@@ -7,6 +7,20 @@ const pool = new Pool({
   database: 'finals'
 });
 
+const getEmailFromUser = (id) => {
+  const queryString = `
+  SELECT * FROM users
+  WHERE id = $1;
+  `;
+  const queryParams = [id]
+
+  return pool.query(queryString, queryParams)
+  .then(res=> {
+    return res.rows[0]
+  })
+}
+exports.getEmailFromUser = getEmailFromUser;
+
 const getUsersFromEmail = (email) => {
     const queryString = `
     SELECT * FROM users
@@ -49,7 +63,7 @@ const getMoviesFromFavorites = (id) => {
   return pool.query(queryString, queryParams)
   .then(res => {
     console.log('res:', res)
-    return res
+    return res.rows
   })
 }
 

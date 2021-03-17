@@ -1,42 +1,58 @@
+import axios from "axios";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-export default function NavBar(props) {
+export default function NavBar({ setToken, setUser, token, user }) {
   const history = useHistory();
 
   const handleLogout = () => {
-    props.setUser("");
+    setToken("");
+    setUser("");
     localStorage.clear();
     history.push("/")
   }
-
-  const isLoggedIn = props.user ? `${props.user} is logged in` : "";
+  const isLoggedIn = token ? `${user} is logged in` : "";
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("token");
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      props.setUser(foundUser);
+    const loggedToken = localStorage.getItem("token")
+    if (loggedToken) {
+      const foundToken = JSON.parse(loggedToken);
+      setToken(foundToken);
     }
-  }, [props.setUser]);
+  }, [setToken]);
+
+  useEffect(() => {
+    const loggedToken = localStorage.getItem("token")
+    axios.get(
+      "/api/users/verify",
+      {
+        headers: { "Authorization": loggedToken }
+      },
+    )
+      .then(response => {
+        setUser(response.data.email)
+      })
+  }, [setUser])
+
 
   return (
-      <nav>
-        {isLoggedIn}
-        <ul>
-          <li>
-            <a href="/"> Home </a>
-          </li>
-          <li>
-            <a href="/login"> Login </a>
-          </li>
-          <li>
-            <a href="/register"> Register </a>
-          </li>
-          <li>
-            <button onClick={handleLogout}>Log Out</button>
-          </li>
-        </ul>
-      </nav>
+    <nav>
+      {isLoggedIn}
+      <ul>
+        <li>
+          <a href="/"> Home </a>
+        </li>
+        <li>
+          {!isLoggedIn && <a href="/login"> Login </a>}
+          {!isLoggedIn && <a href="/register"> Register </a>}
+        </li>
+        <li>
+          {
+            isLoggedIn && <a href="/favorites">My Favorites</a>
+          }
+          {isLoggedIn && <button onClick={handleLogout}>Log Out</button>}
+        </li>
+      </ul>
+    </nav>
   )
 }

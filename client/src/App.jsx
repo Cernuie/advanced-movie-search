@@ -8,9 +8,11 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import StreamablePlayer from "./components/StreamablePlayer";
 import UseVideoFinder from "./hooks/UseVideoFinder";
+import Favorites from "./components/Favorites"
 
 function App() {
   const [user, setUser] = useState("")
+  const [token, setToken] = useState("")
   const [video, setVideo] = useState({})
  
   useEffect(() => {
@@ -21,15 +23,21 @@ function App() {
     fetchAPI();
   }, [])
 
-  const [token, setToken] = useState("")
+  useEffect(() => {
+
+  }, [token])
+
   return (
     <Router>
       <div>
         <h1 className="centre">Advanced Movie Search App:</h1>
-        <NavBar {... {user,token, setToken, setUser}} />
+        <NavBar {... {user, token, setToken, setUser }} />
         <Switch>
           <Route path="/movie/:id">
             <MovieOverview />
+          </Route>
+          <Route path="/favorites">
+            <Favorites {... {user, token, setToken, setUser }}/>
           </Route>
           <Route path="/login">
             <Login {... {setUser, setToken}} />
