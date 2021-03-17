@@ -30,10 +30,13 @@ export default function StreamablePlayer() {
   const isThereAVideo = youtubeUrl + video.key
   
   return (
-    <div>
+    <div className='player-wrapper'>
       {isThereAVideo !== "https://www.youtube.com/watch?v=undefined" &&
         <ReactPlayer
+          className='react-player'
           url={youtubeUrl + video.key}
+          width='100%'
+          height='100%'
           controls
       />}
     </div>
