@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useHistory } from "react-router";
 
 export default function TVShowCarousel(props) {
+
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
