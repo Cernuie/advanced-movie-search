@@ -29,7 +29,6 @@ function App() {
         <NavBar {... {user,token, setToken, setUser}} />
         <Switch>
           <Route path="/movie/:id">
-            <StreamablePlayer video={video} />
             <MovieOverview />
           </Route>
           <Route path="/login">
