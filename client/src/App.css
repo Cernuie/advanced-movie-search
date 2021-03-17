@@ -57,7 +57,7 @@ flex-wrap: wrap;
 }
 
 html {
-  background: #282c34;
+  background: #131516;
   color: white;
 }
 
@@ -79,4 +79,31 @@ ul li img{
   position: absolute;
   top: 0;
   left: 0;
+}
+
+#page {
+  width: 1025px;
+  margin: 0px auto -1px auto;
+  padding: 15px;
+  display: flex;
+}
+.InsideContent{
+  display:inline-block;
+}
+
+#divTable {
+  width: 400px;
+}
+#divMessage {
+  width: 100%;
+}
+
+.poster {
+  width: 96%;
+}
+
+.container {
+display: flex;
+flex-direction: column;
+align-items: center;
 }
