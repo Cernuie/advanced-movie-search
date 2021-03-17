@@ -3,20 +3,22 @@ import axios from "axios";
 import ReactStars from "react-rating-stars-component";
 import { render } from "react-dom";
 import StreamablePlayer from "./StreamablePlayer";
+import { useLocation } from "react-router";
 
 export default function MovieOverview(props) {
   const [data, setData] = useState([]);
 
-  let urlId = window.location.pathname;
-  let onlyId = urlId.substring(7);
+  const location = useLocation();
 
   useEffect(() => {
+    const onlyId = location.pathname.substring(7);
+    console.log("onlyid", onlyId);
     const apiUrl = `https://www.omdbapi.com/?i=${onlyId}&apikey=4a3b711b`;
     axios.get(apiUrl).then((response) => {
       console.log("here", response.data);
       setData(response.data);
     });
-  }, []);
+  }, [location.pathname]);
 
   const loopOverRatings = (array) => {
     const allRatings = array.map((array) => {
@@ -38,19 +40,21 @@ export default function MovieOverview(props) {
     activeColor: "yellow",
     onChange: (newValue) => {
       console.log(`New user rating is: ${newValue}`);
-    }
+    },
   };
 
   return Object.keys(data).length > 0 ? (
     <article className="container">
       <section>
-        <h2>
-          {data.Title}
-        </h2>
+        <h2>{data.Title}</h2>
         <div id="page">
           <div id="divTable" class="InsideContent">
             <table id="logtable">
-              <img className="poster" src={data.Poster} alt="movie poster"></img>
+              <img
+                className="poster"
+                src={data.Poster}
+                alt="movie poster"
+              ></img>
             </table>
           </div>
 
@@ -81,12 +85,11 @@ export default function MovieOverview(props) {
         <p>Director: {data.Director}</p>
         <p>Relevant Actors: {data.Actors}</p>
 
-        <h3>Leave a Rating Below:
-        <ReactStars {...reactStarsFormat} />
+        <h3>
+          Leave a Rating Below:
+          <ReactStars {...reactStarsFormat} />
         </h3>
-
       </div>
-
     </article>
   ) : (
     <h2>Loading</h2>
