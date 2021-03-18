@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const { getUsersFromEmail, addUser, getEmailFromUser, getMoviesFromFavorites } = require('../helpers/dbHelpers');
+const { getUsersFromEmail, addUser, getEmailFromUser, getMoviesFromFavorites, addMoviesToMedia } = require('../helpers/dbHelpers');
 const jsonwebtoken = require('jsonwebtoken');
 const jwt_decode = require("jwt-decode")
 
@@ -74,6 +74,22 @@ module.exports = (db) => {
           })
         })
       })
+  })
+
+  router.post('/favorites/new', (req, res) => {
+    console.log(req.headers)
+    const decoded = jwt_decode(req.headers.authorization);
+    const movie = req.data.movie
+    console.log(movie)
+    getEmailFromUser(decoded.id).then((user) => {
+      console.log("user:", user)
+      addMovieToMedia(movie.Title, movie.Type, movie.Year, movie.imdbID).then((mediaID) => {
+        console.log("mediaID:", mediaID)
+        addMovieToFavourites(decoded.id, mediaID).then(response => {
+          console.log("FINAL POST RESPONSE HERE:", response)
+        })
+      })
+    })
   })
   return router;
 }

@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 // Web server config
-const PORT       = process.env.PORT || 5678;
+const PORT       = process.env.PORT || 3001;
 const ENV        = process.env.ENV || "development";
 const express    = require("express");
 const cors = require('cors');
