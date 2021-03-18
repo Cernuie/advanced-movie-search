@@ -9,7 +9,7 @@ export default function Favorites({ user, token, setUser, setToken }) {
 
   useEffect(() => {
     axios.get(
-      "/api/users/favorites",
+      "/api/favorites",
       {
         headers: { "Authorization": localStorage.getItem("token") }
       }
@@ -22,6 +22,9 @@ export default function Favorites({ user, token, setUser, setToken }) {
       console.log(error)
     })
   }, [])
+
+  
+  
   return (
     <div>
       {favorites.map(movie => {

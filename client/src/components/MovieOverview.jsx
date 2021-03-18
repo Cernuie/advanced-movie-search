@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, forceUpdate } from "react";
 import axios from "axios";
 import ReactStars from "react-rating-stars-component";
 import StreamablePlayer from "./StreamablePlayer";
@@ -6,7 +6,8 @@ import { useLocation } from "react-router";
 
 export default function MovieOverview(props) {
   const [data, setData] = useState([]);
-  
+  const [isFavorite, setIsFavorite] = useState("");
+
   const location = useLocation();
 
   useEffect(() => {
@@ -41,23 +42,50 @@ export default function MovieOverview(props) {
   };
 
   const convertDataToFavorites = (parsedData) => {
-
-    axios.post("/api/users/favorites/new", {
+    console.log(parsedData)
+    axios.post("/api/favorites/new", {
       headers: { "Authorization": localStorage.getItem("token") },
       movie: parsedData
     }).then((response) =>{
       console.log(response)
+      setIsFavorite("passed")
     })
-}
+  }
+
+  useEffect(() => {
+    const movieID = document.location.pathname.split("/")[2];
+    axios.get(`/api/favorites/new?movieID=${movieID}`, {
+      headers: { "Authorization": localStorage.getItem("token") },
+    }).then((response) => {
+      console.log("RESPONSE", response.data.pass)
+      setIsFavorite(response.data.pass)
+    })
+  },[])
 
   
+  const validateFavorite = () => {
+    const movieID = document.location.pathname.split("/")[2];
+    axios.get(`/api/favorites/new?movieID=${movieID}`, {
+      headers: { "Authorization": localStorage.getItem("token") },
+    }).then((response) => {
+      console.log("RESPONSE", response.data.pass)
+      
+      if(response.data.pass !== "passed") {
+        console.log("inside the if statement")
+        return (<button type="button" onClick={() => convertDataToFavorites(data)}> Add to Favorites </button>)
+      } 
+    })
+  }
 
   return Object.keys(data).length > 0 ? (
     <article className="container">
       <section>
         <h2>{data.Title}</h2>
-        <button type="button" onClick={() => convertDataToFavorites(data)}> Add to Favorites </button>
-        <button type="button"> Add to Watch List </button>
+        {isFavorite !== "passed" ? 
+          <button type="button" onClick={() => convertDataToFavorites(data)}> Add to Favorites </button> : <button type="button" onClick={() => convertDataToFavorites(data)}> Remove from Favorites </button> } 
+
+
+        <button type="button" onClick={() => validateFavorite()}> Add to Watch List </button>
         <div id="page">
           <div id="divTable" class="InsideContent">
             <table id="logtable">
