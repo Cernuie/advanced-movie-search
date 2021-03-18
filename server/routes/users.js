@@ -63,33 +63,5 @@ module.exports = (db) => {
       })
   })
 
-  router.get('/favorites', (req, res) => {
-    decoded = jwt_decode(req.headers.authorization);
-    getEmailFromUser(decoded.id).then((user) => {
-      console.log(user)
-        getMoviesFromFavorites(user.id).then(movies => {
-          console.log("movies:", movies)
-          res.json({
-            movies:movies
-          })
-        })
-      })
-  })
-
-  router.post('/favorites/new', (req, res) => {
-    console.log(req.headers)
-    const decoded = jwt_decode(req.headers.authorization);
-    const movie = req.data.movie
-    console.log(movie)
-    getEmailFromUser(decoded.id).then((user) => {
-      console.log("user:", user)
-      addMovieToMedia(movie.Title, movie.Type, movie.Year, movie.imdbID).then((mediaID) => {
-        console.log("mediaID:", mediaID)
-        addMovieToFavourites(decoded.id, mediaID).then(response => {
-          console.log("FINAL POST RESPONSE HERE:", response)
-        })
-      })
-    })
-  })
   return router;
 }

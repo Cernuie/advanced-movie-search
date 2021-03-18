@@ -7,6 +7,40 @@ const pool = new Pool({
   database: 'finals'
 });
 
+const getMediaFromID = (id) => {
+  // console.log("id from call:", id)
+  // console.log(id === 'tt5109280')
+  const queryString = `
+  SELECT * FROM media
+  WHERE imdb_id = $1;
+  `
+
+  const queryParams = [id]
+
+  return pool.query(queryString, queryParams)
+    .then(res => {
+      return res.rows[0]
+    })
+}
+
+exports.getMediaFromID = getMediaFromID;
+
+const getIDsFromFavorites = (user_id, media_id) => {
+
+  const queryString = `
+  SELECT * FROM favorites
+  WHERE user_id = $1 AND media_id = $2;
+  `
+  const queryParams = [user_id, media_id]
+
+  return pool.query(queryString, queryParams)
+    .then(res => {
+      return res.rows[0]
+    })
+}
+
+exports.getIDsFromFavorites = getIDsFromFavorites;
+
 const getEmailFromUser = (id) => {
   const queryString = `
   SELECT * FROM users
