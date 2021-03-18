@@ -6,7 +6,6 @@ import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import StreamablePlayer from "./components/StreamablePlayer";
 import UseVideoFinder from "./hooks/UseVideoFinder";
 import Favorites from "./components/Favorites"
 

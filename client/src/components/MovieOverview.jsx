@@ -40,10 +40,24 @@ export default function MovieOverview(props) {
     },
   };
 
+  const convertDataToFavorites = (parsedData) => {
+
+    axios.post("/api/users/favorites/new", {
+      headers: { "Authorization": localStorage.getItem("token") },
+      movie: parsedData
+    }).then((response) =>{
+      console.log(response)
+    })
+}
+
+  
+
   return Object.keys(data).length > 0 ? (
     <article className="container">
       <section>
         <h2>{data.Title}</h2>
+        <button type="button" onClick={() => convertDataToFavorites(data)}> Add to Favorites </button>
+        <button type="button"> Add to Watch List </button>
         <div id="page">
           <div id="divTable" class="InsideContent">
             <table id="logtable">

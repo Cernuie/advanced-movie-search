@@ -42,10 +42,8 @@ export default function NavBar({ setToken, setUser, token, user }) {
         <li>
           <a href="/"> Home </a>
         </li>
-        <li>
-          {!isLoggedIn && <a href="/login"> Login </a>}
-          {!isLoggedIn && <a href="/register"> Register </a>}
-        </li>
+        <li>{!isLoggedIn && <a href="/login"> Login </a>}</li>
+        <li>{!isLoggedIn && <a href="/register"> Register </a>}</li>
         <li>
           {
             isLoggedIn && <a href="/favorites">My Favorites</a>
