@@ -41,10 +41,10 @@ export default function Favorites({ user, token, setUser, setToken }) {
             <li>Title: {movie.Title}</li>
             <li>
               Release Year: {movie.Year}
-              test
+     
             </li>
-            {movie.Type === "series" && <li> TV Series </li>}
-            {movie.Type === "movie" && <li> Movie </li>}
+            {movie.Type === "series" && <li> Type: TV Series </li>}
+            {movie.Type === "movie" && <li> Type: Movie </li>}
             <li>Your Rating Here: 8.7/10</li>
             <button type="button" onClick={() => deleteFavorite()}>
               {" "}
