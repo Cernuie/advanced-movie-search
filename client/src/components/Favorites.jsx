@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import deleteFavorite from "../hooks/useDeleteFavorite";
 
 export default function Favorites({ user, token, setUser, setToken }) {
   const [favorites, setFavorites] = useState([])
@@ -40,7 +40,9 @@ export default function Favorites({ user, token, setUser, setToken }) {
             {movie.type === "movie" && <li> Movie </li>}
             <li>
               Your Rating Here: 8.7/10
+              {console.log(movie)}
             </li>
+            <button type="button" onClick={() => deleteFavorite()}> Remove from Favorites </button>
           </ul>
         )
       })}

@@ -7,7 +7,7 @@ import { useLocation } from "react-router";
 export default function MovieOverview(props) {
   const [data, setData] = useState([]);
   const [isFavorite, setIsFavorite] = useState("");
-
+  
   const location = useLocation();
 
   useEffect(() => {
@@ -77,12 +77,28 @@ export default function MovieOverview(props) {
     })
   }
 
+  const deleteFavorite = () => {
+    const movieID = document.location.pathname.split("/")[2];
+    axios.delete(`/api/favorites/new?movieID=${movieID}`, {
+      headers: { "Authorization": localStorage.getItem("token") },
+    }).then((response) => {
+      console.log("delete passed", response)
+      console.log("deletion is here", response.data.deletion)
+      if(response.data.deletion === "true") {
+        console.log("inside the if statement")
+        setIsFavorite("deleted")
+      }
+    })
+  }
+
+
+
   return Object.keys(data).length > 0 ? (
     <article className="container">
       <section>
         <h2>{data.Title}</h2>
         {isFavorite !== "passed" ? 
-          <button type="button" onClick={() => convertDataToFavorites(data)}> Add to Favorites </button> : <button type="button" onClick={() => convertDataToFavorites(data)}> Remove from Favorites </button> } 
+          <button type="button" onClick={() => convertDataToFavorites(data)}> Add to Favorites </button> : <button type="button" onClick={() => deleteFavorite()}> Remove from Favorites </button> } 
 
 
         <button type="button" onClick={() => validateFavorite()}> Add to Watch List </button>
@@ -128,6 +144,12 @@ export default function MovieOverview(props) {
           Leave a Rating Below:
           <ReactStars {...reactStarsFormat} />
         </h3>
+        <div className="comments">
+          <form>
+            <textarea type="text" placeholder="Write comments here" />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       </div>
     </article>
   ) : (
