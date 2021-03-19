@@ -7,7 +7,8 @@ import NavBar from "./components/NavBar";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import UseVideoFinder from "./hooks/UseVideoFinder";
-import Favorites from "./components/Favorites"
+import Favorites from "./components/Favorites";
+import Watchlist from "./components/Watchlist";
 
 function App() {
   const [user, setUser] = useState("")
@@ -29,7 +30,7 @@ function App() {
   return (
     <Router>
       <div>
-        <h1 className="centre">Advanced Movie Search App:</h1>
+        <h1 className="centre">ASC Prime Search</h1>
         <NavBar {... {user, token, setToken, setUser }} />
         <Switch>
           <Route path="/movie/:id">
@@ -37,6 +38,9 @@ function App() {
           </Route>
           <Route path="/favorites">
             <Favorites {... {user, token, setToken, setUser }}/>
+          </Route>
+          <Route path="/watchlist">
+            <Watchlist {... {user, token, setToken, setUser }}/>
           </Route>
           <Route path="/login">
             <Login {... {setUser, setToken}} />

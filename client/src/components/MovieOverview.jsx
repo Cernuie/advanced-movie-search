@@ -7,7 +7,8 @@ import { useLocation } from "react-router";
 export default function MovieOverview(props) {
   const [data, setData] = useState([]);
   const [isFavorite, setIsFavorite] = useState("");
-  
+  const [watchList, setWatchList] = useState("");
+
   const location = useLocation();
 
   useEffect(() => {
@@ -45,7 +46,7 @@ export default function MovieOverview(props) {
     const movieID = document.location.pathname.split("/")[2];
     axios.post(`/api/favorites/new?movieID=${movieID}`, {
       headers: { "Authorization": localStorage.getItem("token") }
-    }).then((response) =>{
+    }).then((response) => {
       console.log(response)
       setIsFavorite("passed")
     })
@@ -57,55 +58,78 @@ export default function MovieOverview(props) {
       headers: { "Authorization": localStorage.getItem("token") },
     }).then((response) => {
       console.log("RESPONSE", response.data.pass)
-      if(response.data.pass === "passed") {
+      if (response.data.pass === "passed") {
         setIsFavorite(response.data.pass)
       } else {
         setIsFavorite("")
       }
-      
-    })
-  },[])
 
-  
-  const validateFavorite = () => {
-    const movieID = document.location.pathname.split("/")[2];
-    axios.get(`/api/favorites/new?movieID=${movieID}`, {
-      headers: { "Authorization": localStorage.getItem("token") },
-    }).then((response) => {
-      console.log("RESPONSE", response.data.pass)
-      
-      if(response.data.pass !== "passed") {
-        console.log("inside the if statement")
-        return (<button type="button" onClick={() => convertDataToFavorites(data)}> Add to Favorites </button>)
-      } 
     })
-  }
+  }, [])
 
   const deleteFavorite = () => {
     const movieID = document.location.pathname.split("/")[2];
     axios.delete(`/api/favorites/new?movieID=${movieID}`, {
-      headers: { "Authorization": localStorage.getItem("token") },
+      headers: { "Authorization": localStorage.getItem("token")},
     }).then((response) => {
       console.log("delete passed", response)
       console.log("deletion is here", response.data.deletion)
-      if(response.data.deletion === "true") {
+      if (response.data.deletion === "true") {
         console.log("inside the if statement")
         setIsFavorite("")
       }
     })
   }
 
+  const convertDataToWatchList = () => {
+    const movieID = document.location.pathname.split("/")[2];
+    axios.post(`/api/watchlist/new?movieID=${movieID}`, {
+      headers: { "Authorization": localStorage.getItem("token") }
+    }).then((response) => {
+      console.log(response)
+      setWatchList("passed")
+    })
+  }
 
+  useEffect(() => {
+    const movieID = document.location.pathname.split("/")[2];
+    axios.get(`/api/watchlist/new?movieID=${movieID}`, {
+      headers: { "Authorization": localStorage.getItem("token") },
+    }).then((response) => {
+      console.log("Reponse here", response.data.pass)
+      if (response.data.pass === "passed") {
+        setWatchList(response.data.pass)
+      } else {
+        setWatchList("")
+      }
+    })
+  }, [])
+
+  const deleteWatchList = () => {
+    const movieID = document.location.pathname.split("/")[2];
+    axios.delete(`/api/watchlist/new?movieID=${movieID}`, {
+      headers: { "Authorization": localStorage.getItem("token") },
+    }).then((response) => {
+      console.log("delete passed", response)
+      console.log("deletion is here", response.data.deletion)
+      if (response.data.deletion === "true") {
+        console.log("inside the if statement")
+        setWatchList("")
+      }
+    })
+  }
 
   return Object.keys(data).length > 0 ? (
     <article className="container">
       <section>
         <h2>{data.Title}</h2>
-        {isFavorite !== "passed" ? 
-          <button type="button" onClick={() => convertDataToFavorites()}> Add to Favorites </button> : <button type="button" onClick={() => deleteFavorite()}> Remove from Favorites </button> } 
 
+        {isFavorite !== "passed" ?
+          <button type="button" onClick={() => convertDataToFavorites()}> Add to Favorites </button> : <button type="button" onClick={() => deleteFavorite()}> Remove from Favorites </button>}
 
-        <button type="button" onClick={() => validateFavorite()}> Add to Watch List </button>
+        {watchList !== "passed" ?
+          <button type="button" onClick={() => convertDataToWatchList()}> Add to Watch List </button> :<button type="button" onClick={() => deleteWatchList()}> Remove from Watch List </button>}
+
         <div id="page">
           <div id="divTable" class="InsideContent">
             <table id="logtable">

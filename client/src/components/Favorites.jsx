@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import deleteFavorite from "../hooks/useDeleteFavorite";
+import {useHistory} from "react-router-dom"
 
 export default function Favorites({ user, token, setUser, setToken }) {
   const [favorites, setFavorites] = useState([]);
+
+  let history = useHistory()
 
   useEffect(() => {
     axios
@@ -34,7 +36,7 @@ export default function Favorites({ user, token, setUser, setToken }) {
   }, []);
 
 
-  const removeMediaFromFavoritesPage = (id, index, movie) => {
+  const removeMediaFromFavoritesPage = (id, index, title) => {
 
     axios.delete(`/api/favorites/new?movieID=${id}`, {
       headers: { "Authorization": localStorage.getItem("token") },
@@ -47,14 +49,13 @@ export default function Favorites({ user, token, setUser, setToken }) {
         // console.log("fav list", favoritesList)
         favoritesList.splice(index, 1);
         setFavorites(favoritesList)
-        alert(`You have deleted ${movie} from your favorites!`)
+        alert(`You have deleted ${title} from your favorites!`)
       }
     })
   }
 
-
   return (
-    <div>
+    <div className="flex">
       {favorites.map((movie, index) => {
         return (
           <ul key={movie.imdbID}>
@@ -62,6 +63,7 @@ export default function Favorites({ user, token, setUser, setToken }) {
             <li>
               Release Year: {movie.Year}
             </li>
+            <li><img onClick={() => history.push(`/movie/${movie.imdbID}`)} src={movie.Poster} width="200px" height="300px"/></li>
             {movie.Type === "series" && <li> Type: TV Series </li>}
             {movie.Type === "movie" && <li> Type: Movie </li>}
             <li>Your Rating Here: 8.7/10</li>

@@ -33,6 +33,7 @@ export default function MovieSearch() {
 
   return (
     <Fragment>
+      <div className="flex-centre">
       <select
         onChange={(event) => setFilter(event.target.value)}
         value={filter}
@@ -41,6 +42,7 @@ export default function MovieSearch() {
         <option value="shows">TV Shows</option>
       </select>
       <SearchBar onSearch={(term) => setTerm(term)} />
+      </div>
       <div className="movieStyles">
         <Results results={results} />
       </div>

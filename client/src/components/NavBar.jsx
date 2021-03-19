@@ -37,20 +37,15 @@ export default function NavBar({ setToken, setUser, token, user }) {
 
   return (
     <nav>
-      {isLoggedIn}
-      <ul>
-        <li>
-          <a href="/"> Home </a>
-        </li>
-        <li>{!isLoggedIn && <a href="/login"> Login </a>}</li>
-        <li>{!isLoggedIn && <a href="/register"> Register </a>}</li>
-        <li>
-          {
-            isLoggedIn && <a href="/favorites">My Favorites</a>
-          }
-          {isLoggedIn && <button onClick={handleLogout}>Log Out</button>}
-        </li>
-      </ul>
+      <div className="flex-space">
+        {isLoggedIn}
+        <div><a href="/"> Back to Home </a> </div>
+        <div>{!isLoggedIn && <a href="/login"> Login </a>} </div>
+        <div>{!isLoggedIn && <a href="/register"> Register </a>}  </div>
+        <div>{isLoggedIn && <a href="/favorites"> My Favorites </a>}   </div>
+        <div>{isLoggedIn && <a href="/watchlist"> My Watch List </a>}  </div>
+        <div>{isLoggedIn && <button onClick={handleLogout}>Log Out</button>} </div>
+      </div>
     </nav>
   )
 }

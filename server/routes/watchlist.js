@@ -3,17 +3,15 @@ const router = express.Router();
 const jsonwebtoken = require('jsonwebtoken');
 const jwt_decode = require("jwt-decode")
 
-const { addMoviesToFavorites, getIDsFromFavorites, deleteMediaFromFavorites, getImdbIDsFromUserID } = require('../helpers/dbHelpers');
+const { addMoviesToWatchList, getImdbIDsFromWatchList, getIDsFromWatchlist, deleteMediaFromWatchlist } = require('../helpers/dbHelpers');
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
-    //get user id,
     decoded = jwt_decode(req.headers.authorization)
-    //then get all imdb ids linked to that user
-    getImdbIDsFromUserID(decoded.id)
+    //get imdb ids from watchlist
+    getImdbIDsFromWatchList(decoded.id)
       .then((movies) => {
         console.log("imdb returns here:", movies)
-        //send them back to front end for api calls
         res.json({
           imdbID: movies
         })
@@ -21,10 +19,10 @@ module.exports = (db) => {
   })
 
   router.post('/new', (req, res) => {
-    const decoded = jwt_decode(req.body.headers.Authorization);
-    //with query from imdbID, add to favorites using addMovieToFavorites fn
-    console.log(req.query)
-    addMoviesToFavorites(decoded.id, req.query.movieID)
+    const decoded = jwt_decode(req.body.headers.Authorization)
+    console.log("req.query here", req.query)
+
+    addMoviesToWatchList(decoded.id, req.query.movieID)
       .then((response) => {
         console.log("added response:", response)
         res.json({
@@ -35,7 +33,7 @@ module.exports = (db) => {
 
   router.get('/new', (req, res) => {
     const decoded = jwt_decode(req.headers.authorization);
-    getIDsFromFavorites(decoded.id, req.query.movieID)
+    getIDsFromWatchlist(decoded.id, req.query.movieID)
       .then(response => {
         if (response) {
           console.log(response)
@@ -52,8 +50,8 @@ module.exports = (db) => {
 
   router.delete('/new', (req, res) => {
     const decoded = jwt_decode(req.headers.authorization);
-    // delete movie from favorites by using imdb id from query and userid from header
-    deleteMediaFromFavorites(decoded.id, req.query.movieID)
+    // delete movie from watchlist by using imdb id from query and userid from header
+    deleteMediaFromWatchlist(decoded.id, req.query.movieID)
       .then(response => {
         // console.log("did we finally delete", response)
         res.json({
@@ -62,6 +60,10 @@ module.exports = (db) => {
       })
 
   })
-  
+
   return router;
 }
+
+
+
+

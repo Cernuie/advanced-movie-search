@@ -36,18 +36,23 @@ module.exports = (db) => {
         console.log(user)
         if (!user) {
           console.log("wrong email")
-        } else {
-          if (bcrypt.compareSync(password, user.password)) {
-            console.log("authenticated")
-            console.log(jsonwebtoken.sign({ id: user.id }, process.env.JWT_KEY))
-            res.json({
-              token: jsonwebtoken.sign({ id: user.id }, process.env.JWT_KEY),
-              email: user.email
-            })
-          } else {
-            console.log("wrong password")
-          }
+          res.json({ status: "incorrect email or password" })
+          return
         }
+        
+        if (!bcrypt.compareSync(password, user.password)) {
+          console.log("wrong password")
+          res.json({ status: "incorrect email or password" })
+          return
+        }
+
+        console.log("authenticated")
+        console.log(jsonwebtoken.sign({ id: user.id }, process.env.JWT_KEY))
+        res.json({
+          token: jsonwebtoken.sign({ id: user.id }, process.env.JWT_KEY),
+          email: user.email
+        })
+
       })
 
   })

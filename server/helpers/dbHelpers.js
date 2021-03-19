@@ -134,6 +134,69 @@ const getImdbIDsFromUserID = (id) => {
 
 exports.getImdbIDsFromUserID = getImdbIDsFromUserID;
 
+const addMoviesToWatchList = (id, movie) => {
+  const queryString = `
+    INSERT INTO watchlist (user_id, imdb_id)
+    VALUES ($1, $2)
+    RETURNING *;
+    `
+  const queryParams = [id, movie];
+
+  return pool.query(queryString, queryParams)
+    .then(result => result.rows[0])
+    .catch((error) => error);
+}
+
+exports.addMoviesToWatchList = addMoviesToWatchList;
+
+
+const getImdbIDsFromWatchList = (id) => {
+  const queryString = `
+  SELECT * FROM watchlist
+  WHERE user_id = $1;
+  `
+
+  const queryParams = [id];
+
+  return pool.query(queryString, queryParams)
+  .then(result => result.rows)
+  .catch((error) => error)
+}
+
+exports.getImdbIDsFromWatchList = getImdbIDsFromWatchList;
+
+const getIDsFromWatchlist = (user_id, imdb_id) => {
+  const queryString = `
+  SELECT * FROM watchlist
+  WHERE user_id = $1 AND imdb_id = $2;
+  `
+  const queryParams = [user_id, imdb_id]
+
+  return pool.query(queryString, queryParams)
+    .then(res => {
+      return res.rows[0]
+    })
+}
+
+exports.getIDsFromWatchlist = getIDsFromWatchlist;
+
+const deleteMediaFromWatchlist = (user_id, imdb_id) => {
+
+  const queryString = `
+  DELETE FROM watchlist
+  WHERE user_id = $1 AND imdb_id = $2;
+  `
+  const queryParams = [user_id, imdb_id]
+
+  return pool.query(queryString, queryParams)
+  .then(res => {
+    return res
+  })
+}
+
+exports.deleteMediaFromWatchlist = deleteMediaFromWatchlist;
+
+
 // const addMoviesToMedia = (title, type, year, id) => {
 //   const queryString = `
 //   INSERT INTO media (title, type, year, imdb_id)

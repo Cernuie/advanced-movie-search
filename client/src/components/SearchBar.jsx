@@ -18,7 +18,7 @@ export default function SearchBar(props) {
         className="search__form"
         onSubmit={(event) => event.preventDefault()}
       >
-        <input
+        <input className="input-box-style"
           placeholder="Search Movies"
           name="search"
           type="text"

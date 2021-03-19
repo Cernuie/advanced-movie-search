@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 // Web server config
-const PORT       = process.env.PORT || 5678;
+const PORT       = process.env.PORT || 3001;
 const ENV        = process.env.ENV || "development";
 const express    = require("express");
 const cors = require('cors');
@@ -38,12 +38,14 @@ app.use(express.static("public"));
 
 const usersRoutes = require("./routes/users");
 const favoritesRoute = require('./routes/favorites');
+const watchlistRoute = require('./routes/watchlist');
 
 app.use('/api/users', usersRoutes(db));
 app.use('/api/favorites', favoritesRoute(db));
+app.use('/api/watchlist', watchlistRoute(db));
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.end("hello");
 });
 
 app.listen(PORT, () => {
