@@ -33,20 +33,39 @@ export default function Favorites({ user, token, setUser, setToken }) {
       });
   }, []);
 
+
+  const removeMediaFromFavoritesPage = (id, index, movie) => {
+
+    axios.delete(`/api/favorites/new?movieID=${id}`, {
+      headers: { "Authorization": localStorage.getItem("token") },
+    }).then((response) => {
+      console.log("delete passed", response)
+      console.log("deletion is here", response.data.deletion)
+      if (response.data.deletion === "true") {
+        // console.log("inside the if statement")
+        const favoritesList = [...favorites]
+        // console.log("fav list", favoritesList)
+        favoritesList.splice(index, 1);
+        setFavorites(favoritesList)
+        alert(`You have deleted ${movie} from your favorites!`)
+      }
+    })
+  }
+
+
   return (
     <div>
-      {favorites.map((movie) => {
+      {favorites.map((movie, index) => {
         return (
           <ul key={movie.imdbID}>
             <li>Title: {movie.Title}</li>
             <li>
               Release Year: {movie.Year}
-     
             </li>
             {movie.Type === "series" && <li> Type: TV Series </li>}
             {movie.Type === "movie" && <li> Type: Movie </li>}
             <li>Your Rating Here: 8.7/10</li>
-            <button type="button" onClick={() => deleteFavorite()}>
+            <button type="button" onClick={() => removeMediaFromFavoritesPage(movie.imdbID, index, movie.Title)}>
               {" "}
               Remove from Favorites{" "}
             </button>
