@@ -22,40 +22,25 @@ module.exports = (db) => {
 
   router.post('/new', (req, res) => {
     const decoded = jwt_decode(req.body.headers.Authorization);
-    const movie = req.body.movie
-
-    console.log("movie here", movie);
-    getEmailFromUser(decoded.id).then((user) => {
-
-      console.log("user here:", user);
-      addMoviesToMedia(movie.Title, movie.Type, movie.Year, movie.imdbID).then((mediaID) => {
-
-        console.log("media here", mediaID);
-        addMoviesToFavorites(decoded.id, mediaID.id).then(response => {
-          res.json({
-            response: response
-          })
-        })
+    //with query from imdbID, add to favorites using addMovieToFavorites fn
+    console.log(req.query)
+    addMoviesToFavorites(decoded.id, req.query.movieID)
+    .then((response) => {
+      console.log("added response:", response)
+      res.json({
+        passed: "passed"
       })
     })
   })
 
   router.get('/new', (req, res) => {
-    // console.log("headers:", req.headers.authorization)
-    // console.log("movie:", req.query)
     const decoded = jwt_decode(req.headers.authorization);
-    // console.log("query", req.query)
-    getMediaFromID(req.query.movieID)
-      .then((media) => {
-        // console.log("media here", media);
-        if(media !== undefined) {
-          getIDsFromFavorites(decoded.id, imdb.id)
-          .then(response => {
-            if (response) {
-              res.json({
-                pass: "passed"
-              })
-            }
+    getIDsFromFavorites(decoded.id, req.query.movieID)
+      .then(response => {
+        if (response) {
+          console.log(response)
+          res.json({
+            pass: "passed"
           })
         } else {
           res.json({
@@ -67,22 +52,14 @@ module.exports = (db) => {
 
   router.delete('/new', (req, res) => {
     const decoded = jwt_decode(req.headers.authorization);
-
-    // console.log("query", req.query)
-    getMediaFromID(req.query.movieID)
-      .then((media) => {
-        // console.log('media status', media)
-        deleteMediaFromFavorites(decoded.id, media.id)
-        .then(response => {
-          // console.log("did we finally delete", response)
-          res.json({
-            deletion: "true"
-          })
-        })
+    // delete movie from favorites by using imdb id from query and userid from header
+    deleteMediaFromFavorites(decoded.id, req.query.movieID)
+    .then(response => {
+      // console.log("did we finally delete", response)
+      res.json({
+        deletion: "true"
       })
-    // console.log('query', req.headers.authorization)
-    // console.log('query body', req.query)
-
+    })
 
   })
 

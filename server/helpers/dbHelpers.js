@@ -46,7 +46,7 @@ const deleteMediaFromFavorites = (user_id, imdb_id) => {
 
   const queryString = `
   DELETE FROM favorites
-  WHERE USER_id = $1 AND imdb_id = $2;
+  WHERE user_id = $1 AND imdb_id = $2;
   `
   const queryParams = [user_id, imdb_id]
 

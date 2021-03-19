@@ -41,11 +41,10 @@ export default function MovieOverview(props) {
     },
   };
 
-  const convertDataToFavorites = (parsedData) => {
-    console.log(parsedData)
-    axios.post("/api/favorites/new", {
-      headers: { "Authorization": localStorage.getItem("token") },
-      movie: parsedData
+  const convertDataToFavorites = () => {
+    const movieID = document.location.pathname.split("/")[2];
+    axios.post(`/api/favorites/new?movieID=${movieID}`, {
+      headers: { "Authorization": localStorage.getItem("token") }
     }).then((response) =>{
       console.log(response)
       setIsFavorite("passed")
@@ -58,7 +57,12 @@ export default function MovieOverview(props) {
       headers: { "Authorization": localStorage.getItem("token") },
     }).then((response) => {
       console.log("RESPONSE", response.data.pass)
-      setIsFavorite(response.data.pass)
+      if(response.data.pass === "passed") {
+        setIsFavorite(response.data.pass)
+      } else {
+        setIsFavorite("")
+      }
+      
     })
   },[])
 
@@ -86,7 +90,7 @@ export default function MovieOverview(props) {
       console.log("deletion is here", response.data.deletion)
       if(response.data.deletion === "true") {
         console.log("inside the if statement")
-        setIsFavorite("deleted")
+        setIsFavorite("")
       }
     })
   }
@@ -98,7 +102,7 @@ export default function MovieOverview(props) {
       <section>
         <h2>{data.Title}</h2>
         {isFavorite !== "passed" ? 
-          <button type="button" onClick={() => convertDataToFavorites(data)}> Add to Favorites </button> : <button type="button" onClick={() => deleteFavorite()}> Remove from Favorites </button> } 
+          <button type="button" onClick={() => convertDataToFavorites()}> Add to Favorites </button> : <button type="button" onClick={() => deleteFavorite()}> Remove from Favorites </button> } 
 
 
         <button type="button" onClick={() => validateFavorite()}> Add to Watch List </button>
