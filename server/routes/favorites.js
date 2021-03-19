@@ -3,20 +3,21 @@ const router = express.Router();
 const jsonwebtoken = require('jsonwebtoken');
 const jwt_decode = require("jwt-decode")
 
-const { getEmailFromUser, getMoviesFromFavorites, addMoviesToMedia, addMoviesToFavorites , getMediaFromID, getIDsFromFavorites } = require('../helpers/dbHelpers');
+const { getEmailFromUser, getMoviesFromFavorites, addMoviesToMedia, addMoviesToFavorites , getMediaFromID, getIDsFromFavorites, deleteMediaFromFavorites , getImdbIDsFromUserID } = require('../helpers/dbHelpers');
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
-    decoded = jwt_decode(req.headers.authorization);
-    getEmailFromUser(decoded.id).then((user) => {
-      console.log(user)
-        getMoviesFromFavorites(user.id).then(movies => {
-          console.log("movies:", movies)
-          res.json({
-            movies:movies
-          })
-        })
+    //get user id,
+    decoded = jwt_decode(req.headers.authorization)
+    //then get all imdb ids linked to that user
+    getImdbIDsFromUserID(decoded.id)
+    .then((movies) => {
+      console.log("imdb returns here:", movies)
+      //send them back to front end for api calls
+      res.json({
+        imdbID: movies
       })
+    })
   })
 
   router.post('/new', (req, res) => {
@@ -40,16 +41,15 @@ module.exports = (db) => {
   })
 
   router.get('/new', (req, res) => {
-
     // console.log("headers:", req.headers.authorization)
     // console.log("movie:", req.query)
     const decoded = jwt_decode(req.headers.authorization);
-    console.log("query", req.query)
+    // console.log("query", req.query)
     getMediaFromID(req.query.movieID)
       .then((media) => {
-        console.log("media here", media);
+        // console.log("media here", media);
         if(media !== undefined) {
-          getIDsFromFavorites(decoded.id, media.id)
+          getIDsFromFavorites(decoded.id, imdb.id)
           .then(response => {
             if (response) {
               res.json({
@@ -64,6 +64,28 @@ module.exports = (db) => {
         }
       })
   })
+
+  router.delete('/new', (req, res) => {
+    const decoded = jwt_decode(req.headers.authorization);
+
+    // console.log("query", req.query)
+    getMediaFromID(req.query.movieID)
+      .then((media) => {
+        // console.log('media status', media)
+        deleteMediaFromFavorites(decoded.id, media.id)
+        .then(response => {
+          // console.log("did we finally delete", response)
+          res.json({
+            deletion: "true"
+          })
+        })
+      })
+    // console.log('query', req.headers.authorization)
+    // console.log('query body', req.query)
+
+
+  })
+
 
   return router;
 }

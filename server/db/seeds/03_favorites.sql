@@ -1,7 +1,7 @@
-INSERT INTO favorites (user_id, media_id)
+INSERT INTO favorites (user_id, imdb_id)
 VALUES
-(1,1),
-(2,2),
-(2,1),
-(3,1),
-(3,2)
+(1,'tt1361336'),
+(2,'tt5109280'),
+(2,'tt13535454'),
+(3,'tt0111161'),
+(3,'tt12361974')
