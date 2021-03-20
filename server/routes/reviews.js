@@ -24,9 +24,13 @@ module.exports = (db) => {
     const stars = req.body.rating
     const message = req.body.message
     sendReviewToDatabase(decoded.id, req.query.movieID, message, stars).then((response) => {
-      console.log("response here", response)
-      res.json({
-        passed: "successful push to backend"
+      getReviewsForMedia(req.query.movieID)
+      .then(reviews => {
+        if (reviews) {
+          res.json({ reviews })
+        } else {
+          res.json({ pass: "failed"})
+        }
       })
     })
   })
@@ -36,7 +40,6 @@ module.exports = (db) => {
     getReviewsForMedia(req.query.movieID)
       .then(response => {
         if (response) {
-          console.log("here is your response chris", response)
           res.json({ response })
         } else {
           res.json({ pass: "failed"})

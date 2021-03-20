@@ -48,8 +48,9 @@ export default function MovieOverview() {
     },
   };
 
-  const convertDataToReviews = () => {
+  const convertDataToReviews = (message) => {
     const movieID = document.location.pathname.split("/")[2];
+    console.log("message here:", message);
     axios
       .post(`/api/reviews/new?movieID=${movieID}`, {
         headers: { Authorization: localStorage.getItem("token") },
@@ -57,8 +58,11 @@ export default function MovieOverview() {
         message: message,
       })
       .then((response) => {
-        console.log(response);
-        //change later to proper response
+        if ((response.data.reviews)) {
+          setReviews(response.data.reviews);
+        } else {
+          setReviews("");
+        }
       });
   };
 
@@ -156,7 +160,7 @@ export default function MovieOverview() {
       return;
     } else {
       setMessage(text);
-      convertDataToReviews();
+      convertDataToReviews(text);
     }
   };
 
@@ -260,6 +264,8 @@ export default function MovieOverview() {
         <h4>User Comments</h4>
         {reviews &&
           reviews.map((review) => {
+
+            console.log(review);
             return (
               <div>
                 <h2>Username: {review.username}</h2>
