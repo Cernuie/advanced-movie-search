@@ -88,13 +88,13 @@ const getUsersFromEmail = (email) => {
 
 exports.getUsersFromEmail = getUsersFromEmail;
 
-const addUser = (email, password) => {
+const addUser = (username, email, password) => {
   const queryString = `
-  INSERT INTO users (email, password)
-  VALUES ($1, $2)
+  INSERT INTO users (username, email, password)
+  VALUES ($1, $2, $3)
   RETURNING *;
   `
-  const queryParams = [email, password]
+  const queryParams = [username, email, password]
 
   return pool.query(queryString, queryParams)
     .then(result => result.rows[0])

@@ -7,32 +7,34 @@ const jwt_decode = require("jwt-decode")
 
 module.exports = (db) => {
   router.post('/register', (req, res) => {
+    console.log(req.body)
+    const username = req.body.username
     const email = req.body.email
     const password = req.body.password
     getUsersFromEmail(email)
       .then((user) => {
-        console.log(user)
         if (!user) {
           const hashedPassword = bcrypt.hashSync(password, process.env.SALT_ROUNDS | 0)
-          addUser(email, hashedPassword)
+          addUser(username, email, hashedPassword)
             .then(user =>
               res.json({
                 token: jsonwebtoken.sign({ id: user.id }, process.env.JWT_KEY),
-                email: user.email
+                username: user.username
               })
             )
+            return;
         }
-        else {
-          console.log("failed")
-        }
+        res.json({ error: 'Wrong email or password. Please try again!'});
       })
   })
   router.post('/login', (req, res) => {
+    console.log(req.body);
     const email = req.body.email
     const password = req.body.password
 
     getUsersFromEmail(email)
       .then((user) => {
+        console.log("checking user:", user)
         if (!user) {
           res.json({ error: 'Wrong email or password. Please try again!'});
           return
@@ -42,17 +44,17 @@ module.exports = (db) => {
           res.json({ error: 'Wrong email or password. Please try again!'});
           return
         }
+        console.log("in the then")
         res.json({
           token: jsonwebtoken.sign({ id: user.id }, process.env.JWT_KEY),
-          email: user.email
+          username: user.username
         })
 
       }).catch(err => res.json({
         error: err
       }));
-
-
   })
+
   router.get('/verify', (req, res) => {
     console.log(req.headers.authorization)
     decoded = jwt_decode(req.headers.authorization);
