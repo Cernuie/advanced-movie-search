@@ -11,7 +11,7 @@ export default function Register(props) {
   const history = useHistory();
 
  
-  const register = (email, password) => {
+  const register = (username, email, password) => {
     const url = "/api/users/register"
 
     return axios

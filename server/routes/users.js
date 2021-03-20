@@ -14,6 +14,7 @@ module.exports = (db) => {
     getUsersFromEmail(email)
       .then((user) => {
         if (!user) {
+          console.log("checking user3:", user)
           const hashedPassword = bcrypt.hashSync(password, process.env.SALT_ROUNDS | 0)
           addUser(username, email, hashedPassword)
             .then(user =>
@@ -24,7 +25,7 @@ module.exports = (db) => {
             )
             return;
         }
-        res.json({ error: 'Wrong email or password. Please try again!'});
+        res.json({ error: 'This email is already in use. Please try again!'});
       })
   })
   router.post('/login', (req, res) => {

@@ -4,7 +4,7 @@ console.log('KEY123321', process.env.OMDB_KEY)
 
 
 // Web server config
-const PORT       = process.env.PORT || 3001;
+const PORT       = process.env.PORT || 5678;
 const ENV        = process.env.ENV || "development";
 const express    = require("express");
 const cors = require('cors');
