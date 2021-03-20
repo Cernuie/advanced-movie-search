@@ -3,35 +3,30 @@ import useTVShowList from "../hooks/useTVShowList";
 import MovieSearch from "./MovieSearch";
 import MovieCarousel from "./MovieCarousel";
 import TVShowCarousel from "./TVShowCarousel";
+import ScrollToTop from "./ScrollToTop";
 
 const Home = () => {
   const {
     nowPlaying,
     upcomingMovies,
     popularMovies,
-    topRatedMovies, 
-  } = useMovieList()
+    topRatedMovies,
+  } = useMovieList();
 
-  const {
-    showsAiringToday,
-    popularShows,
-    topRatedShows,
-  } = useTVShowList()
+  const { showsAiringToday, popularShows, topRatedShows } = useTVShowList();
 
-  
-
-  return(
+  return (
     <>
       <MovieSearch />
       <MovieCarousel movies={nowPlaying} header="Now Playing:" />
-      <MovieCarousel movies={topRatedMovies} header="Top Rated Movies:"/>
-      <MovieCarousel movies={popularMovies} header="Popular Movies:"/>
-      <MovieCarousel movies={upcomingMovies} header="Upcoming Movies:"/>
+      <MovieCarousel movies={topRatedMovies} header="Top Rated Movies:" />
+      <MovieCarousel movies={popularMovies} header="Popular Movies:" />
+      <MovieCarousel movies={upcomingMovies} header="Upcoming Movies:" />
       <TVShowCarousel shows={showsAiringToday} header="TV Shows Airing Today:" />
-      <TVShowCarousel shows={popularShows} header="Popular TV Shows:"/>
-      <TVShowCarousel shows={topRatedShows} header="Top Rated TV Shows:"/>
- 
+      <TVShowCarousel shows={popularShows} header="Popular TV Shows:" />
+      <TVShowCarousel shows={topRatedShows} header="Top Rated TV Shows:" />
+      <ScrollToTop />
     </>
-  )
-}
-export default Home 
+  );
+};
+export default Home;
