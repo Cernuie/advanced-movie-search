@@ -1,7 +1,5 @@
 // load .env data into process.env
 require('dotenv').config();
-console.log('KEY123321', process.env.OMDB_KEY)
-
 
 // Web server config
 const PORT       = process.env.PORT || 5678;
@@ -55,3 +53,5 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+//

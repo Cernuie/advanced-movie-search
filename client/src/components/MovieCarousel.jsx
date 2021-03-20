@@ -4,6 +4,8 @@ import "react-multi-carousel/lib/styles.css";
 import axios from 'axios';
 import { useHistory } from "react-router";
 
+const API_KEY = process.env.REACT_APP_TMDB_KEY;
+
 export default function MovieCarousel(props) {
   const responsive = {
     superLargeDesktop: {
@@ -31,7 +33,7 @@ export default function MovieCarousel(props) {
   let history = useHistory();
 
   const getMovieDetails = (movieID, history) => {
-    let url = `https://api.themoviedb.org/3/movie/${movieID}?api_key=b982a0ac1f7e5b7165da37d7d73cfb13&language=en-US`
+    let url = `https://api.themoviedb.org/3/movie/${movieID}?api_key=${API_KEY}`
 
     axios.get(url).then((response) => {
       const imdbID = response.data.imdb_id
@@ -60,3 +62,4 @@ export default function MovieCarousel(props) {
   )
 }
 
+//

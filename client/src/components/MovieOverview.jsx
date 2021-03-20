@@ -3,8 +3,9 @@ import axios from "axios";
 import ReactStars from "react-rating-stars-component";
 import StreamablePlayer from "./StreamablePlayer";
 import { useLocation } from "react-router";
+const API_KEY = process.env.REACT_APP_OMDB_KEY;
 
-export default function MovieOverview(props) {
+export default function MovieOverview() {
   const [data, setData] = useState([]);
   const [isFavorite, setIsFavorite] = useState("");
   const [watchList, setWatchList] = useState("");
@@ -17,7 +18,7 @@ export default function MovieOverview(props) {
 
   useEffect(() => {
     const onlyId = location.pathname.substring(7);
-    const apiUrl = `https://www.omdbapi.com/?i=${onlyId}&apikey=4a3b711b`;
+    const apiUrl = `https://www.omdbapi.com/?i=${onlyId}&apikey=${API_KEY}`;
     axios.get(apiUrl).then((response) => {
       setData(response.data);
     });
@@ -170,15 +171,6 @@ export default function MovieOverview(props) {
     });
   }, []);
 
-  const reactStarsFormat2 = {
-    size: 40,
-    count: 10,
-    isHalf: false,
-    value: 4,
-    color: "blue",
-    activeColor: "yellow",
-  };
-
   return Object.keys(data).length > 0 ? (
     <article className="container">
       <section>
@@ -282,3 +274,5 @@ export default function MovieOverview(props) {
     <h2>Loading</h2>
   );
 }
+
+//

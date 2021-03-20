@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-// require('dotenv').config()
-const API_KEY = process.env.REACT_APP_TMDB_KEY
-// const API_KEY_TEST = process.env
-console.log('key omdb', process.env.REACT_APP_OMDB_KEY)
-
-
+const API_KEY = process.env.REACT_APP_TMDB_KEY;
 
 const useMovieList = () => {
   const [
@@ -82,3 +77,5 @@ const useMovieList = () => {
   }
 }
 export default useMovieList;
+
+//

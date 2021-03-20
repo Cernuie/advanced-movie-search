@@ -4,6 +4,8 @@ import ReactPlayer from "react-player";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
+const API_KEY = process.env.REACT_APP_TMDB_KEY;
+
 export default function StreamablePlayer() {
   const location = useLocation();
 
@@ -11,13 +13,13 @@ export default function StreamablePlayer() {
 
   useEffect(() => {
     const imdbID = location.pathname.substring(7);
-    const url = `https://api.themoviedb.org/3/movie/${imdbID}?api_key=b982a0ac1f7e5b7165da37d7d73cfb13&language=en-US`;
+    const url = `https://api.themoviedb.org/3/movie/${imdbID}?api_key=${API_KEY}`;
 
     axios
       .get(url)
       .then((response) => response.data.id)
       .then((id) => {
-        const urlVideoFetch = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=b982a0ac1f7e5b7165da37d7d73cfb13&language=en-US`;
+        const urlVideoFetch = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`;
 
         axios.get(urlVideoFetch).then((response) => {
           console.log("video fetch", response.data.results);
@@ -46,3 +48,6 @@ export default function StreamablePlayer() {
     </div>
   );
 }
+
+
+//
