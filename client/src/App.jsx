@@ -30,7 +30,7 @@ function App() {
   return (
     <Router>
       <div>
-        <h1 className="centre">ASC Prime Search</h1>
+        <h1 className="centre">ASC Media Search</h1>
         <NavBar {... {user, token, setToken, setUser }} />
         <Switch>
           <Route path="/movie/:id">

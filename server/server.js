@@ -39,10 +39,12 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const favoritesRoute = require('./routes/favorites');
 const watchlistRoute = require('./routes/watchlist');
+const reviewsRoute = require('./routes/reviews.js');
 
 app.use('/api/users', usersRoutes(db));
 app.use('/api/favorites', favoritesRoute(db));
 app.use('/api/watchlist', watchlistRoute(db));
+app.use('/api/reviews', reviewsRoute(db));
 
 app.get("/", (req, res) => {
   res.end("hello");

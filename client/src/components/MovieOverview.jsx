@@ -8,6 +8,11 @@ export default function MovieOverview(props) {
   const [data, setData] = useState([]);
   const [isFavorite, setIsFavorite] = useState("");
   const [watchList, setWatchList] = useState("");
+  const [reviews, setReviews] = useState("");
+  const [stars, setStars] = useState("");
+  const [message, setMessage] = useState("");
+  const [text, setText] = useState("");
+
 
   const location = useLocation();
 
@@ -34,13 +39,26 @@ export default function MovieOverview(props) {
     size: 40,
     count: 10,
     isHalf: false,
-    value: 4,
+    value: 4, 
     color: "blue",
     activeColor: "yellow",
     onChange: (newValue) => {
-      console.log(`New user rating is: ${newValue}`);
-    },
-  };
+      console.log(newValue)
+      setStars(newValue)
+  }
+}
+
+  const convertDataToReviews = () => {
+    const movieID = document.location.pathname.split("/")[2];
+    axios.post(`/api/reviews/new?movieID=${movieID}`, {
+      headers: { "Authorization": localStorage.getItem("token") },
+      rating: stars,
+      message: message
+    }).then((response) => {
+      console.log(response)
+      //change later to proper response
+    })
+  }
 
   const convertDataToFavorites = () => {
     const movieID = document.location.pathname.split("/")[2];
@@ -119,6 +137,28 @@ export default function MovieOverview(props) {
     })
   }
 
+  const validateReview = () => {
+    if (!text) {
+      setMessage("Review can not be blank");
+      return;
+    } else {
+      setMessage(text);
+      convertDataToReviews();
+    }
+  }
+
+  useEffect(() => {
+    const movieID = document.location.pathname.split("/")[2];
+    axios.get(`/api/reviews/new?movieID=${movieID}`).then((response) => {
+      if (response.data.pass = "passed") {
+        setReviews(response.data.response)
+      } else {
+        setReviews("");
+      }
+    })
+  }, [])
+
+
   return Object.keys(data).length > 0 ? (
     <article className="container">
       <section>
@@ -173,14 +213,32 @@ export default function MovieOverview(props) {
           <ReactStars {...reactStarsFormat} />
         </h3>
         <div className="comments">
-          <form>
-            <textarea type="text" placeholder="Write comments here" />
-            <button type="submit">Submit</button>
+          <form onSubmit={e => e.preventDefault()}>
+            <textarea type="text" placeholder="Write comments here" value={text} onChange={e => setText(e.target.value)} />
+            <button type="submit" onClick={validateReview}>Submit</button>
           </form>
         </div>
       </div>
+      <section>
+      <h4>User Comments</h4>
+        {reviews && reviews.map((review) => {
+          return(
+            
+          <div>
+            <h2>User ID: {review.user_id}</h2>
+            <p>Review: {review.user_review}</p>
+            <p>Movie Rating: {review.user_rating}/10</p>
+            <ReactStars {...reactStarsFormat} />
+          </div>)
+        })}
+      </section>
     </article>
+   
+    
   ) : (
     <h2>Loading</h2>
   );
 }
+
+// ask mentor
+{/* <ReactStars {...reactStarsFormat, {value: 5}} /> */}

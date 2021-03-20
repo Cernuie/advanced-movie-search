@@ -1,4 +1,4 @@
-const { response } = require("express");
+const { response, query } = require("express");
 const { Pool } = require("pg");
 
 const pool = new Pool({
@@ -196,36 +196,36 @@ const deleteMediaFromWatchlist = (user_id, imdb_id) => {
 
 exports.deleteMediaFromWatchlist = deleteMediaFromWatchlist;
 
+const getReviewsForMedia = (imdb_id) => {
 
-// const addMoviesToMedia = (title, type, year, id) => {
-//   const queryString = `
-//   INSERT INTO media (title, type, year, imdb_id)
-//   VALUES ($1, $2, $3, $4)
-//   RETURNING *;
-//   `
-//   const queryParams = [title, type, year, id];
+  const queryString = `
+  SELECT user_id, user_review, user_rating
+  FROM reviews
+  JOIN users
+  WHERE imdb_id = $1;
+  `
+  const queryParams = [imdb_id];
 
-//   return pool.query(queryString, queryParams)
-//     .then(result => result.rows[0])
-//     .catch((error) => error);
-// }
+  return pool.query(queryString, queryParams)
+  .then(result => result.rows)
+  .catch(error => error)
+}
 
-// exports.addMoviesToMedia = addMoviesToMedia;
+exports.getReviewsForMedia = getReviewsForMedia;
 
-// const getMoviesFromFavorites = (id) => {
-//   const queryString = `
-//   SELECT media.* FROM media
-//   JOIN favorites ON media.id = imdb_id
-//   JOIN users ON users.id = user_id
-//   WHERE user_id = $1;
-//   `
-//   const queryParams = [id]
+const sendReviewToDatabase = (user_id, imdb_id, user_review, user_rating) => {
 
-//   return pool.query(queryString, queryParams)
-//     .then(res => {
-//       console.log('res:', res)
-//       return res.rows
-//     })
-// }
+  const queryString = `
+    INSERT INTO reviews (user_id, imdb_id, user_review, user_rating)
+    VALUES ($1, $2, $3, $4)
+    RETURNING *;
+    `
 
-// exports.getMoviesFromFavorites = getMoviesFromFavorites
+  const queryParams = [user_id, imdb_id, user_review, user_rating]
+
+  return pool.query(queryString, queryParams)
+  .then(res => res.rows)
+  .catch(error => error)
+}
+
+exports.sendReviewToDatabase = sendReviewToDatabase;
