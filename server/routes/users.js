@@ -33,27 +33,24 @@ module.exports = (db) => {
 
     getUsersFromEmail(email)
       .then((user) => {
-        console.log(user)
         if (!user) {
-          console.log("wrong email")
-          res.json({ status: "incorrect email or password" })
-          return
-        }
-        
-        if (!bcrypt.compareSync(password, user.password)) {
-          console.log("wrong password")
-          res.json({ status: "incorrect email or password" })
+          res.json({ error: 'Wrong email or password. Please try again!'});
           return
         }
 
-        console.log("authenticated")
-        console.log(jsonwebtoken.sign({ id: user.id }, process.env.JWT_KEY))
+        if (!bcrypt.compareSync(password, user.password)) {
+          res.json({ error: 'Wrong email or password. Please try again!'});
+          return
+        }
         res.json({
           token: jsonwebtoken.sign({ id: user.id }, process.env.JWT_KEY),
           email: user.email
         })
 
-      })
+      }).catch(err => res.json({
+        error: err
+      }));
+
 
   })
   router.get('/verify', (req, res) => {
