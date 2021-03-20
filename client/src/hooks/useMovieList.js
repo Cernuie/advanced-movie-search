@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+// require('dotenv').config()
+const API_KEY = process.env.REACT_APP_TMDB_KEY
+// const API_KEY_TEST = process.env
+console.log('key omdb', process.env.REACT_APP_OMDB_KEY)
+
+
+
 const useMovieList = () => {
   const [
     {
@@ -16,10 +23,10 @@ const useMovieList = () => {
     popularMovies: [],
     topRatedMovies: [],
   }); 
-  const getUpcomingMovies = 'https://api.themoviedb.org/3/movie/upcoming?api_key=b982a0ac1f7e5b7165da37d7d73cfb13&language=en-US&page=1'
-  const getNowPlayingMovies = `https://api.themoviedb.org/3/movie/now_playing?api_key=b982a0ac1f7e5b7165da37d7d73cfb13&language=en-US&page=1`
-  const getPopularMovies = `https://api.themoviedb.org/3/movie/popular?api_key=b982a0ac1f7e5b7165da37d7d73cfb13&language=en-US&page=1`
-  const getTopRatedMovies = `https://api.themoviedb.org/3/movie/top_rated?api_key=b982a0ac1f7e5b7165da37d7d73cfb13&language=en-US&page=1`
+  const getUpcomingMovies = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`
+  const getNowPlayingMovies = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`
+  const getPopularMovies = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
+  const getTopRatedMovies = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
   const posterUrl = 'https://image.tmdb.org/t/p/original/';
   
   const movieResultsMapping = (movieData) => {

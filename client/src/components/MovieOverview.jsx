@@ -1,4 +1,4 @@
-import React, { useEffect, useState, forceUpdate } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ReactStars from "react-rating-stars-component";
 import StreamablePlayer from "./StreamablePlayer";
@@ -272,8 +272,7 @@ export default function MovieOverview(props) {
               <div>
                 <h2>User ID: {review.user_id}</h2>
                 <p>Review: {review.user_review}</p>
-                <p>Movie Rating: {review.user_rating}/10</p>
-                <ReactStars {...reactStarsFormat} value={review.user_rating} />
+                <p>Movie Rating:  <ReactStars  {...reactStarsFormat} value={review.user_rating} /></p>
               </div>
             );
           })}
@@ -282,21 +281,4 @@ export default function MovieOverview(props) {
   ) : (
     <h2>Loading</h2>
   );
-}
-
-// const reactStarsFormat = {
-//   size: 40,
-//   count: 10,
-//   isHalf: false,
-//   value: 4,
-//   color: "blue",
-//   activeColor: "yellow",
-//   onChange: (newValue) => {
-//     console.log(newValue);
-//     setStars(newValue);
-//   },
-// };
-// ask mentor
-{
-  /* <ReactStars {...reactStarsFormat, {value: 5}} /> */
 }

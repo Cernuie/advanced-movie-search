@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 
 export default function Register(props) {
-
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -15,28 +15,35 @@ export default function Register(props) {
     const url = "/api/users/register"
 
     return axios
-      .post(url, {email, password})
+      .post(url, {username, email, password})
       .then(res => {
-        if (res.data) {
+        if (res.data && res.data.token) {
           localStorage.setItem("token", JSON.stringify(res.data.token));
-          props.setUser(res.data.email)
+          props.setUser(res.data.username)
           props.setToken(res.data.token)
           history.push("/")
         }
+        if(res.data && res.data.error) {
+          setMessage(res.data.error)
+        }  
         return res.data;
       });
   }
 
   const validate = () => {
-    if (!email) {
+
+    if(!username) {
+      setMessage("Username cannot be blank");
+      return;
+    } else if (!email) {
       setMessage("Email cannot be blank");
       return;
-    }  else if (!password) {
+    } else if (!password) {
       setMessage("Password cannot be blank");
       return;
     } else {
       setMessage("");
-      register(email , password)
+      register(username, email , password)
     }
   }
 
@@ -48,6 +55,12 @@ export default function Register(props) {
         </div>
         {message && <div className="alert alert-danger">{message}</div>}
         <form onSubmit={event => event.preventDefault()}>
+          <div>
+            <label>
+              Username:
+            </label>
+            <input type="username" placeholder="Enter username" value={username} onChange={event => setUsername(event.target.value)}/>
+          </div>
           <div>
             <label>
               Email Address:

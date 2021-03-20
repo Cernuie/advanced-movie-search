@@ -23,8 +23,8 @@ export default function Login(props) {
       if (res.data && res.data.token) {
         localStorage.setItem("token", JSON.stringify(res.data.token));
         props.setToken(res.data.token);
-        props.setUser(res.data.email);
-        // history.push("/")
+        props.setUser(res.data.username);
+        history.push("/")
       }
       if(res.data && res.data.error) {
         setMessage(res.data.error)
