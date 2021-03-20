@@ -201,7 +201,6 @@ const getReviewsForMedia = (imdb_id) => {
   const queryString = `
   SELECT user_id, user_review, user_rating
   FROM reviews
-  JOIN users
   WHERE imdb_id = $1;
   `
   const queryParams = [imdb_id];

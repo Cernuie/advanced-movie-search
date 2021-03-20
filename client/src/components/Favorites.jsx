@@ -63,7 +63,7 @@ export default function Favorites({ user, token, setUser, setToken }) {
             <li>
               Release Year: {movie.Year}
             </li>
-            <li><img onClick={() => history.push(`/movie/${movie.imdbID}`)} src={movie.Poster} width="200px" height="300px"/></li>
+            <li><img onClick={() => history.push(`/movie/${movie.imdbID}`)} src={movie.Poster} width="200px" height="300px" alt=""/></li>
             {movie.Type === "series" && <li> Type: TV Series </li>}
             {movie.Type === "movie" && <li> Type: Movie </li>}
             <li>Your Rating Here: 8.7/10</li>
