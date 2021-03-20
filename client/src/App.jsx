@@ -34,7 +34,7 @@ function App() {
         <NavBar {... {user, token, setToken, setUser }} />
         <Switch>
           <Route path="/movie/:id">
-            <MovieOverview />
+            <MovieOverview {...{user, token}}/>
           </Route>
           <Route path="/favorites">
             <Favorites {... {user, token, setToken, setUser }}/>

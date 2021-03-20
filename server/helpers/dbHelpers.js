@@ -199,9 +199,11 @@ exports.deleteMediaFromWatchlist = deleteMediaFromWatchlist;
 const getReviewsForMedia = (imdb_id) => {
 
   const queryString = `
-  SELECT user_id, user_review, user_rating
+  SELECT users.username, user_review, user_rating
   FROM reviews
+  JOIN users ON user_id = users.id
   WHERE imdb_id = $1;
+
   `
   const queryParams = [imdb_id];
 

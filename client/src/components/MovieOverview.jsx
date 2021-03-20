@@ -270,7 +270,7 @@ export default function MovieOverview(props) {
           reviews.map((review) => {
             return (
               <div>
-                <h2>User ID: {review.user_id}</h2>
+                <h2>Username: {review.username}</h2>
                 <p>Review: {review.user_review}</p>
                 <p>Movie Rating:  <ReactStars  {...reactStarsFormat} value={review.user_rating} /></p>
               </div>
