@@ -12,7 +12,7 @@ export default function Login(props) {
   const history = useHistory();
 
   const handleSubmit = (email, password) => {
-    axios.post(
+    return axios.post(
       "/api/users/login",
       {
       email: email,
@@ -20,16 +20,18 @@ export default function Login(props) {
       },
     )
     .then(res => {
-      console.log(res)
-      if (res.data) {
+      if (res.data && res.data.token) {
         localStorage.setItem("token", JSON.stringify(res.data.token));
-        props.setUser(res.data.email)
-        props.setToken(res.data.token)
-        history.push("/")
+        props.setToken(res.data.token);
+        props.setUser(res.data.email);
+        // history.push("/")
+      }
+      if(res.data && res.data.error) {
+        setMessage(res.data.error)
       }
       return res.data;
-    })
-  }
+    });
+}
 
   const validateForm = () => {
     if (!email) {
@@ -40,7 +42,8 @@ export default function Login(props) {
       return;
     } else {
       setMessage("");
-      handleSubmit(email, password)
+      handleSubmit(email.toLowerCase(), password)
+      .catch(err => console.log(err));
     }
   }
 
