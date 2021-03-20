@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+const API_KEY = process.env.REACT_APP_TMDB_KEY;
 
 const useTVShowList = () => {
   const [
@@ -14,9 +15,9 @@ const useTVShowList = () => {
     popularShows: [],
     topRatedShows: [],
   });
-  const getShowsAiringToday = 'https://api.themoviedb.org/3/tv/airing_today?api_key=b982a0ac1f7e5b7165da37d7d73cfb13&language=en-US&page=1'
-  const getPopularShows = `https://api.themoviedb.org/3/tv/popular?api_key=b982a0ac1f7e5b7165da37d7d73cfb13&language=en-US&page=1`
-  const getTopRatedShows = `https://api.themoviedb.org/3/tv/top_rated?api_key=b982a0ac1f7e5b7165da37d7d73cfb13&language=en-US&page=1`
+  const getShowsAiringToday = `https://api.themoviedb.org/3/tv/airing_today?api_key=${API_KEY}&language=en-US&page=1`
+  const getPopularShows = `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=en-US&page=1`
+  const getTopRatedShows = `https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}&language=en-US&page=1`
   const posterUrl = 'https://image.tmdb.org/t/p/original/'
 
   const tvShowResultsMapping = (showData) => {

@@ -1,7 +1,5 @@
 // load .env data into process.env
 require('dotenv').config();
-console.log('KEY123321', process.env.OMDB_KEY)
-
 
 // Web server config
 const PORT       = process.env.PORT || 3001;

@@ -3,7 +3,8 @@ import axios from "axios";
 
 import SearchBar from "./SearchBar";
 import Results from "./Results";
-// const axios = require("axios");
+
+const API_KEY = process.env.REACT_APP_OMDB_KEY;
 
 export default function MovieSearch() {
   const [term, setTerm] = useState("");
@@ -13,10 +14,10 @@ export default function MovieSearch() {
   useEffect(() => {
     let apiUrl = "";
     if (filter === "movies") {
-      apiUrl = `https://www.omdbapi.com/?s=${term}?&type=movie&apikey=4a3b711b`;
+      apiUrl = `https://www.omdbapi.com/?s=${term}?&type=movie&apikey=${API_KEY}`;
     }
     if (filter === "shows") {
-      apiUrl = `https://www.omdbapi.com/?s=${term}?&type=series&apikey=4a3b711b`;
+      apiUrl = `https://www.omdbapi.com/?s=${term}?&type=series&apikey=${API_KEY}`;
     }
     
 

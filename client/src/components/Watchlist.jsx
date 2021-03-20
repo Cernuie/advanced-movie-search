@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom"
 
+const API_KEY = process.env.REACT_APP_OMDB_KEY;
+
 export default function Watchlist() {
 
   const [watchList, setWatchList] = useState([]);
@@ -15,7 +17,7 @@ export default function Watchlist() {
       const promises = [];
       for (let media of response.data.imdbID) {
         const imdbID = media.imdb_id;
-        let mediaDetails = `https://www.omdbapi.com/?i=${imdbID}&apikey=4a3b711b`;
+        let mediaDetails = `https://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`;
 
         const mediaDetailsPromise = 
         axios.get(mediaDetails)

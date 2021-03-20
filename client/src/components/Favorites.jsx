@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {useHistory} from "react-router-dom"
 
+const API_KEY = process.env.REACT_APP_OMDB_KEY;
+
 export default function Favorites({ user, token, setUser, setToken }) {
   const [favorites, setFavorites] = useState([]);
 
@@ -16,7 +18,7 @@ export default function Favorites({ user, token, setUser, setToken }) {
         const promises = [];
         for (let movie of response.data.imdbID) {
           const imdbID = movie.imdb_id;
-          let movieDetails = `https://www.omdbapi.com/?i=${imdbID}&apikey=4a3b711b`;
+          let movieDetails = `https://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`;
 
           const movieDetailPromise = axios
             .get(movieDetails)
