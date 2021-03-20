@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import MovieOverview from "./components/MovieOverview";
@@ -17,24 +17,23 @@ function App() {
     <Router>
       <div>
         <h1 className="centre">ASC Media Search</h1>
-        <NavBar {... {user, token, setToken, setUser }} />
+        <NavBar {...{ user, token, setToken, setUser }} />
         <Switch>
           <Route path="/movie/:id">
             <MovieOverview {...{user, token}}/>
           </Route>
           <Route path="/favorites">
-            <Favorites {... {user, token, setToken, setUser }}/>
+            <Favorites {...{ user, token, setToken, setUser }} />
           </Route>
           <Route path="/watchlist">
-            <Watchlist {... {user, token, setToken, setUser }}/>
+            <Watchlist {...{ user, token, setToken, setUser }} />
           </Route>
           <Route path="/login">
-            <Login {... {setUser, setToken}} />
+            <Login {...{ setUser, setToken }} />
           </Route>
           <Route path="/register">
-            <Register {... {setUser, setToken}}/>
+            <Register {...{ setUser, setToken }} />
           </Route>
-
           <Route path="/" exact>
             <Home />
           </Route>
