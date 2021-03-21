@@ -30,21 +30,35 @@ export default function NavBar({ setToken, setUser, token, user }) {
       },
     )
       .then(response => {
-        setUser(response.data.email)
+        console.log(response)
+        setUser(response.data.username)
       })
   }, [setUser])
 
 
   return (
     <nav>
+      <div>
       <div className="flex-space">
+      <div className="flex-lists">
         {isLoggedIn}
-        <div><a href="/"> Back to Home </a> </div>
-        <div>{!isLoggedIn && <a href="/login"> Login </a>} </div>
-        <div>{!isLoggedIn && <a href="/register"> Register </a>}  </div>
-        <div>{isLoggedIn && <a href="/favorites"> My Favorites </a>}   </div>
-        <div>{isLoggedIn && <a href="/watchlist"> My Watch List </a>}  </div>
-        <div>{isLoggedIn && <button onClick={handleLogout}>Log Out</button>} </div>
+        <div>
+        <a href="/"> Back to Home </a> 
+        </div>
+        <div>
+        {isLoggedIn && <a href="/favorites"> My Favorites </a>} 
+        </div>
+        <div>
+        {isLoggedIn && <a href="/watchlist"> My Watch List </a>}
+        </div>
+        </div>
+        <div className="flex-account">
+          
+        {!isLoggedIn && <a href="/login"> Login </a>} 
+        {!isLoggedIn && <a href="/register"> Register </a>}    
+        {isLoggedIn && <button onClick={handleLogout}>Log Out</button>} 
+        </div>
+        </div>
       </div>
     </nav>
   )

@@ -73,6 +73,7 @@ const getEmailFromUser = (id) => {
 }
 exports.getEmailFromUser = getEmailFromUser;
 
+
 const getUsersFromEmail = (email) => {
   const queryString = `
     SELECT * FROM users

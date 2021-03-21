@@ -104,6 +104,11 @@ ul li img {
   justify-content: space-around;
 }
 
+.flex-lists {
+  display: flex;
+  justify-content: space-between;
+}
+
 .default-padding {
   padding-left: 1em;
   padding-right: 1em;
@@ -123,4 +128,10 @@ textarea {
   margin: 0px;
   height: 130px;
   width: 330px;
+}
+a {
+  text-decoration: none; 
+  padding: 10px 10px;
+  word-wrap: normal;
+  color:white
 }
