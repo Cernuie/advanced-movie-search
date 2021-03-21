@@ -1,6 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
+import './MovieDetails.scss'
+
 export default function MovieDetails(props) {
   let history = useHistory();
 
