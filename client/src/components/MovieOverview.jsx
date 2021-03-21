@@ -222,6 +222,7 @@ export default function MovieOverview() {
       </section>
 
       <div>
+      <div>
         <h3> Plot Overview: </h3>
         <p>{data.Plot}</p>
 
@@ -249,32 +250,34 @@ export default function MovieOverview() {
         <div className="comments">
           <form onSubmit={(e) => e.preventDefault()}>
             <textarea
+              classname="movie-review"
               type="text"
               placeholder="Write comments here"
               value={text}
               onChange={(e) => setText(e.target.value)}
             />
-            <button type="submit" onClick={validateReview}>
+            <button className="flex" type="submit" onClick={validateReview}>
               Submit
             </button>
           </form>
         </div>
       </div>
       <section>
-        <h4>User Comments</h4>
+        <h2>Reviews Below:</h2>
         {reviews &&
           reviews.map((review) => {
 
             console.log(review);
             return (
               <div>
-                <h2>Username: {review.username}</h2>
+                <h2>Reviewed By: {review.username}</h2>
                 <p>Review: {review.user_review}</p>
                 <p>Movie Rating:  <ReactStars  {...reactStarsFormat} value={review.user_rating} /></p>
               </div>
             );
           })}
       </section>
+      </div>
     </article>
   ) : (
     <h2>Loading</h2>
