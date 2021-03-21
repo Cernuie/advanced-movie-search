@@ -16,8 +16,8 @@ export default function TVShowCarousel(props) {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-      slidesToSlide: 3
+      items: 4,
+      slidesToSlide: 4
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -55,7 +55,7 @@ export default function TVShowCarousel(props) {
           .map((show, index) =>
             <div key={index}>
               <img src={show.backPoster} alt="alt" onClick={() => getShowDetails(show.id, history)} ></img>
-              {show.name}
+              <text className="centre-text"> {show.name} </text>
             </div>
           )}
 

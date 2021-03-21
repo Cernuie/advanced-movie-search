@@ -15,8 +15,8 @@ export default function MovieCarousel(props) {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-      slidesToSlide: 3
+      items: 4,
+      slidesToSlide: 4
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -43,7 +43,7 @@ export default function MovieCarousel(props) {
 
 
   return (
-    <div >
+    <div>
       <h1>{props.header}</h1>
       <Carousel responsive={responsive} indicators="true" controls="false" draggable={false}
         infinite={true}
@@ -54,7 +54,7 @@ export default function MovieCarousel(props) {
           .map((movie, index) =>
             <div key={index}>
               <img src={movie.backPoster} alt="alt" onClick={() => getMovieDetails(movie.id, history)}></img>
-              {movie.title}
+              <text className="centre-text"> {movie.title} </text>
             </div>
           )}
       </Carousel>

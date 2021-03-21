@@ -4,6 +4,7 @@ import MovieSearch from "./MovieSearch";
 import MovieCarousel from "./MovieCarousel";
 import TVShowCarousel from "./TVShowCarousel";
 import ScrollToTop from "./ScrollToTop";
+import Footer from "./Footer";
 
 const Home = () => {
   const {
@@ -26,6 +27,7 @@ const Home = () => {
       <TVShowCarousel shows={popularShows} header="Popular TV Shows:" />
       <TVShowCarousel shows={topRatedShows} header="Top Rated TV Shows:" />
       <ScrollToTop />
+      <Footer/>
     </>
   );
 };
