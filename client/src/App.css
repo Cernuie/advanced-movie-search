@@ -37,20 +37,6 @@
   }
 }
 
-.movieStyles {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.search {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 10px;
-}
-
 .centre {
   display: flex;
   justify-content: center;
@@ -68,17 +54,6 @@ ul li img {
 
 .react-multi-carousel-item div {
   padding-left: 40px;
-}
-
-.player-wrapper {
-  position: relative;
-  padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
-}
-
-.react-player {
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
 #page {
@@ -117,21 +92,5 @@ ul li img {
   justify-content: space-around;
 }
 
-.flex-centre {
-  display: flex;
-  justify-content: center;
-}
 
-.input-box-style {
-  height: 50px;
-  width: 450px;
-  font-size: 25px;
-}
 
-.scroll-to-top {
-  position: fixed;
-  bottom: 0.5rem;
-  right: 0.5rem;
-  animation: fadeIn 700ms ease-in-out 1s both;
-  cursor: pointer;
-}

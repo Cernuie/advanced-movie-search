@@ -4,6 +4,8 @@ import ReactPlayer from "react-player";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
+import './StreamablePlayer.scss'
+
 const API_KEY = process.env.REACT_APP_TMDB_KEY;
 
 export default function StreamablePlayer() {

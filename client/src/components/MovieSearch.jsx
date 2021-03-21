@@ -4,6 +4,8 @@ import axios from "axios";
 import SearchBar from "./SearchBar";
 import Results from "./Results";
 
+import "./MovieSearch.scss"
+
 const API_KEY = process.env.REACT_APP_OMDB_KEY;
 
 export default function MovieSearch() {

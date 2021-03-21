@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 
 import useDelay from "../hooks/useDelay";
 
+import "./SearchBar.scss"
+
 export default function SearchBar(props) {
   const [value, setValue] = useState("");
   const term = useDelay(value, 2000);
