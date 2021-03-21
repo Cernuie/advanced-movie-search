@@ -63,7 +63,7 @@ module.exports = (db) => {
     getEmailFromUser(decoded.id)
       .then((user) => {
         res.json({
-          email: user.email
+          username: user.username
         })
       })
   })
