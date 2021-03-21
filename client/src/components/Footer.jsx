@@ -23,8 +23,8 @@ export default function footer() {
               Alexander Nguyen
           </a>
           </li>
-          <li className="https://github.com/stephant98">
-            <a href="/" style={{ color: "#f4c10f" }}>
+          <li className="list-inline-item">
+            <a href="https://github.com/stephant98" style={{ color: "#f4c10f" }}>
               Stephan Truchsess
           </a>
           </li>
