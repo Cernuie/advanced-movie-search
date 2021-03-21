@@ -57,6 +57,17 @@ ul li img {
   padding-right: 5px;
 }
 
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 #page {
   width: 1025px;
   margin: 0px auto -1px auto;

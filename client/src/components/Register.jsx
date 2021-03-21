@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
+import "./Register.scss"
 
 
 export default function Register(props) {
@@ -49,32 +50,34 @@ export default function Register(props) {
 
   return(
     <section>
-      <div>
-        <div>
-          <header>Register:</header>
-        </div>
-        {message && <div className="alert alert-danger">{message}</div>}
-        <form onSubmit={event => event.preventDefault()}>
+      <div className="register-container">
+        <div id="registerPage">
+          <header className="register-header">Register</header>
+          {message && <div className="alert alert-danger">{message}</div>}
+          <form className="form-container" onSubmit={event => event.preventDefault()}>
           <div>
             <label>
-              Username:
+              
             </label>
             <input type="username" placeholder="Enter username" value={username} onChange={event => setUsername(event.target.value)}/>
           </div>
           <div>
             <label>
-              Email Address:
+              
             </label>
             <input type="email" placeholder="Enter email" value={email} onChange={event => setEmail(event.target.value)}/>
           </div>
           <div>
             <label>
-              Password:
+          
             </label>
             <input type="password" placeholder="Enter password" value={password} onChange={event => setPassword(event.target.value)}/>
           </div>
-          <button type="button" onClick={validate}>Submit</button>
+          <button className="btn btn-primary" onClick={validate}>Submit</button>
         </form>
+        </div>
+        
+        
       </div>
     </section>
   )

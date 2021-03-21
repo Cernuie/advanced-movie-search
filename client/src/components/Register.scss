@@ -1,4 +1,4 @@
-.login-container{
+.register-container{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,7 +6,7 @@
   width: 100%;
   height: 100%;
 
-  #loginPage {
+  #registerPage {
     
     display: flex;
     flex-direction: column;
@@ -17,7 +17,7 @@
     min-height: 50vh;
   }
 
-  .login-header {
+  .register-header {
     font-size: 3em;
     padding-bottom: 0.4em;
   }
@@ -33,10 +33,9 @@
     width: 60%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    // margin: 1em 0;
-    // padding-top: 0.5em;
-
+    margin: 1em 0;
+    padding-top: 0.5em;
+    align-items: inherit;
     .form-group {
       padding-top: 0.8em;
     }
