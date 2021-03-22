@@ -40,6 +40,8 @@
 .centre {
   display: flex;
   justify-content: center;
+  margin-bottom: 1em;
+  color: white
 }
 
 html {
@@ -83,6 +85,15 @@ ul li img {
 }
 #divMessage {
   width: 100%;
+} 
+
+.header {
+  background-image: url("https://images.pexels.com/photos/3945320/pexels-photo-3945320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-color: #282c34;
+  padding-bottom: 8em;
+  padding-top: 1em;
+  background-blend-mode: luminosity;
+  
 }
 
 .poster {
@@ -107,6 +118,7 @@ ul li img {
 .flex-space {
   display: flex;
   justify-content: space-around;
+  margin-top: 5em;
 }
 
 .flex-lists {
