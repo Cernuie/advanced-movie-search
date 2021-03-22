@@ -42,9 +42,9 @@ export default function NavBar({ setToken, setUser, token, user }) {
     <nav>
       <div>
       <div className="flex-space">
-      <div className="username">
+        {isLoggedIn && <div className="username">
         {isLoggedIn}
-      </div>
+      </div>}
       <div className="flex-lists">
         <div>
         <a href="/"> Back to Home </a> 

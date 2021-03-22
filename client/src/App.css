@@ -122,14 +122,3 @@ h1 {
   font-size: 20px;
 }
 
-.footer-anchor {
-  background-color: #131516;
-  padding: 0px
-}
-
-.outline {
-  outline: auto;
-  outline-color: rgb(0, 0, 0);
-  padding: 1em;
-  margin-bottom: 1.5em;
-}

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Footer.scss'
+
 
 export default function footer() {
 
@@ -38,8 +40,8 @@ export default function footer() {
       <div className="default-padding">
         <h3>APIs Used:</h3>
         <div>
-          <img src="TMDB.png" alt="image" width="135px" />
-          <img src="OMDB.png" alt="image" height="100px" />
+          <img src="TMDB.png" alt="tmdb" width="135px" />
+          <img src="OMDB.png" alt="omdb"height="100px" />
         </div>
       </div>
     </div>

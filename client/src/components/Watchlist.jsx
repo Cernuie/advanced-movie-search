@@ -57,7 +57,7 @@ export default function Watchlist() {
       {watchList.map((movie, index) => {
         return (
           <ul key={movie.imdbID}>
-            <div><img onClick={() => history.push(`/movie/${movie.imdbID}`)}src={movie.Poster} width="200px" height="300px"/></div>
+            <div><img alt="movie-poster"onClick={() => history.push(`/movie/${movie.imdbID}`)}src={movie.Poster} width="200px" height="300px"/></div>
             <li>Title: {movie.Title}</li>
             <li>
               Release Year: {movie.Year}
