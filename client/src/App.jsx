@@ -16,8 +16,10 @@ function App() {
   return (
     <Router>
       <div>
-        <h1 className="centre">ASC Media Search</h1>
-        <NavBar {...{ user, token, setToken, setUser }} />
+        <div className="header">
+          <h1 className="centre">ASC Media Search</h1>
+          <NavBar {...{ user, token, setToken, setUser }} />
+        </div>
         <Switch>
           <Route path="/movie/:id">
             <MovieOverview {...{user, token}}/>
