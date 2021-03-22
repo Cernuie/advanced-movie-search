@@ -146,9 +146,17 @@ textarea {
   height: 130px;
   width: 330px;
 }
+
 a {
   text-decoration: none; 
   padding: 10px 10px;
   word-wrap: normal;
   color:white
+}
+
+.outline {
+  outline: auto;
+  outline-color: rgb(0, 0, 0);
+  padding: 1em;
+  margin-bottom: 1.5em;
 }

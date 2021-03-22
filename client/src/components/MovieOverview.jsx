@@ -177,6 +177,7 @@ export default function MovieOverview() {
 
   return Object.keys(data).length > 0 ? (
     <article className="container">
+      
       <section>
         <h2>{data.Title}</h2>
 
@@ -222,7 +223,7 @@ export default function MovieOverview() {
       </section>
 
       <div>
-      <div>
+      <div className="outline">
         <h3> Plot Overview: </h3>
         <p>{data.Plot}</p>
 
@@ -269,7 +270,7 @@ export default function MovieOverview() {
 
             console.log(review);
             return (
-              <div>
+              <div className="outline">
                 <h2>Reviewed By: {review.username}</h2>
                 <p>Review: {review.user_review}</p>
                 <p>Movie Rating:  <ReactStars  {...reactStarsFormat} value={review.user_rating} /></p>
