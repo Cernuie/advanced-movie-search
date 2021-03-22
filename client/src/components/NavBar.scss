@@ -16,10 +16,6 @@ a {
 }
 
 
-.flex-account {
-  margin-top: 0.6em;
-}
-
 .flex-space {
   display: flex;
   justify-content: space-around;
@@ -35,4 +31,5 @@ a {
 button.logout-btn {
   background-color: white;
   border-radius: 1em;
+  padding: 10px;
 }
