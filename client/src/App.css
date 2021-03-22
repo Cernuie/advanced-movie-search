@@ -89,7 +89,7 @@ ul li img {
 
 .header {
   background-image: url("https://images.pexels.com/photos/3945320/pexels-photo-3945320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
-  background: linear-gradient(to bottom, #282c34, white );
+  background-color: #282c34;
   padding-bottom: 8em;
   padding-top: 1em;
   background-blend-mode: luminosity;
