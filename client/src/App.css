@@ -96,16 +96,6 @@ ul li img {
   
 }
 
-.poster {
-  width: 96%;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .flex {
   display: flex;
 }
@@ -113,18 +103,7 @@ ul li img {
 .flex-wrap{
   display: flex;
   flex-wrap: wrap;
-}
-
-.flex-space {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 5em;
-}
-
-.flex-lists {
-  display: flex;
-  justify-content: space-between;
-}
+} 
 
 .default-padding {
   padding-left: 1em;
@@ -141,22 +120,3 @@ h1 {
   font-size: 20px;
 }
 
-textarea {
-  margin: 0px;
-  height: 130px;
-  width: 330px;
-}
-
-a {
-  text-decoration: none; 
-  padding: 10px 10px;
-  word-wrap: normal;
-  color:white
-}
-
-.outline {
-  outline: auto;
-  outline-color: rgb(0, 0, 0);
-  padding: 1em;
-  margin-bottom: 1.5em;
-}

@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
+import './NavBar.scss'
+
 export default function NavBar({ setToken, setUser, token, user }) {
   const history = useHistory();
 
@@ -40,8 +42,10 @@ export default function NavBar({ setToken, setUser, token, user }) {
     <nav>
       <div>
       <div className="flex-space">
-      <div className="flex-lists">
+      <div className="username">
         {isLoggedIn}
+      </div>
+      <div className="flex-lists">
         <div>
         <a href="/"> Back to Home </a> 
         </div>
@@ -53,10 +57,9 @@ export default function NavBar({ setToken, setUser, token, user }) {
         </div>
         </div>
         <div className="flex-account">
-          
         {!isLoggedIn && <a href="/login"> Login </a>} 
         {!isLoggedIn && <a href="/register"> Register </a>}    
-        {isLoggedIn && <button onClick={handleLogout}>Log Out</button>} 
+        {isLoggedIn && <button className="logout-btn" onClick={handleLogout}>Log Out</button>} 
         </div>
         </div>
       </div>
