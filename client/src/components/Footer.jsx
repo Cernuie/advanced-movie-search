@@ -19,17 +19,17 @@ export default function footer() {
         <ul className="list-inline">
           <h4>Project Contributers: (GitHub Links)</h4>
           <li className="list-inline-item">
-            <a href="https://github.com/Cernuie" style={{ color: "#f4c10f" }}>
+            <a className="footer-anchor" href="https://github.com/Cernuie" style={{ color: "#f4c10f" }}>
               Alexander Nguyen
           </a>
           </li>
           <li className="list-inline-item">
-            <a href="https://github.com/stephant98" style={{ color: "#f4c10f" }}>
+            <a className="footer-anchor"href="https://github.com/stephant98" style={{ color: "#f4c10f" }}>
               Stephan Truchsess
           </a>
           </li>
           <li className="list-inline-item">
-            <a href="https://github.com/chriskang24" style={{ color: "#f4c10f" }}>
+            <a className="footer-anchor" href="https://github.com/chriskang24" style={{ color: "#f4c10f" }}>
               Christopher Kang
           </a>
           </li>
