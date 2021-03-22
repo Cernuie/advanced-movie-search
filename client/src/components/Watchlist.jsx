@@ -53,18 +53,17 @@ export default function Watchlist() {
   }
 
   return (
-    <div>
+    <div className="flex-wrap">
       {watchList.map((movie, index) => {
         return (
           <ul key={movie.imdbID}>
+            <div><img onClick={() => history.push(`/movie/${movie.imdbID}`)}src={movie.Poster} width="200px" height="300px"/></div>
             <li>Title: {movie.Title}</li>
             <li>
               Release Year: {movie.Year}
             </li>
             {movie.Type === "series" && <li> Type: TV Series </li>}
             {movie.Type === "movie" && <li> Type: Movie </li>}
-            <li>Your Rating Here: 8.7/10</li>
-            <li><img onClick={() => history.push(`/movie/${movie.imdbID}`)}src={movie.Poster} width="200px" height="300px"/></li>
             <button type="button" onClick={() => removeMediaFromWatchListPage(movie.imdbID, index, movie.Title)}>
               {" "}
               Remove from WatchList{" "}

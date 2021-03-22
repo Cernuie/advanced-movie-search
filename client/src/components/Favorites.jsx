@@ -57,18 +57,18 @@ export default function Favorites({ user, token, setUser, setToken }) {
   }
 
   return (
-    <div className="flex">
+    <div className="flex-wrap">
       {favorites.map((movie, index) => {
         return (
           <ul key={movie.imdbID}>
+            <h4> My Favorites List:</h4>
+            <div><img onClick={() => history.push(`/movie/${movie.imdbID}`)} src={movie.Poster} width="200px" height="300px" alt=""/></div>
             <li>Title: {movie.Title}</li>
             <li>
               Release Year: {movie.Year}
             </li>
-            <li><img onClick={() => history.push(`/movie/${movie.imdbID}`)} src={movie.Poster} width="200px" height="300px" alt=""/></li>
             {movie.Type === "series" && <li> Type: TV Series </li>}
             {movie.Type === "movie" && <li> Type: Movie </li>}
-            <li>Your Rating Here: 8.7/10</li>
             <button type="button" onClick={() => removeMediaFromFavoritesPage(movie.imdbID, index, movie.Title)}>
               {" "}
               Remove from Favorites{" "}

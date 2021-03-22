@@ -99,6 +99,11 @@ ul li img {
   display: flex;
 }
 
+.flex-wrap{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .flex-space {
   display: flex;
   justify-content: space-around;
