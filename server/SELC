@@ -1,0 +1,7 @@
+ id | username |            email            |                           password                           | created_at 
+----+----------+-----------------------------+--------------------------------------------------------------+------------
+  1 | Alice    | aliceinwonderland@gmail.com | password                                                     | 2021-03-22
+  2 | Chris    | Test@test.com               | test                                                         | 2021-03-22
+  3 | Alex     | testing@test.com            | $2b$12$rLUZofSjPaZklNlR/CXcFOzH.YahlhMd2hdLqjLB8VPMw18kyolYy | 2021-03-22
+(3 rows)
+
