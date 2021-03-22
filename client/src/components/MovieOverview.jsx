@@ -3,7 +3,10 @@ import axios from "axios";
 import ReactStars from "react-rating-stars-component";
 import StreamablePlayer from "./StreamablePlayer";
 import { useLocation } from "react-router";
+import './MovieOverview.scss'
 const API_KEY = process.env.REACT_APP_OMDB_KEY;
+
+
 
 export default function MovieOverview() {
   const [data, setData] = useState([]);
