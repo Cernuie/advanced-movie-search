@@ -61,7 +61,6 @@ export default function Favorites({ user, token, setUser, setToken }) {
       {favorites.map((movie, index) => {
         return (
           <ul key={movie.imdbID}>
-            <h4> My Favorites List:</h4>
             <div><img onClick={() => history.push(`/movie/${movie.imdbID}`)} src={movie.Poster} width="200px" height="300px" alt=""/></div>
             <li>Title: {movie.Title}</li>
             <li>
