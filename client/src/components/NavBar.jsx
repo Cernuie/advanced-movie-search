@@ -40,29 +40,29 @@ export default function NavBar({ setToken, setUser, token, user }) {
 
   return (
     <nav>
-      <div>
+      <div >
       <div className="flex-space">
-        {isLoggedIn && <div className="username">
+        {isLoggedIn && <div className="btn-style">
         {isLoggedIn}
       </div>}
       <div className="flex-lists">
         <div>
-        <a href="/"> Back to Home </a> 
+        <a href="/" className="btn-style"> Back to Home </a> 
         </div>
         <div>
-        {isLoggedIn && <a href="/favorites"> My Favorites </a>} 
+        {isLoggedIn && <a href="/favorites" className="btn-style"> My Favorites </a>} 
         </div>
         <div>
-        {isLoggedIn && <a href="/watchlist"> My Watch List </a>}
+        {isLoggedIn && <a href="/watchlist" className="btn-style"> My Watch List </a>}
         </div>
         </div>
         <div className="flex-account">
-        {!isLoggedIn && <a href="/login"> Login </a>} 
-        {!isLoggedIn && <a href="/register"> Register </a>}    
+        {!isLoggedIn && <a href="/login" className="btn-style"> Login </a>} 
+        {!isLoggedIn && <a href="/register" className="btn-style"> Register </a>}    
         {isLoggedIn && <button className="logout-btn" onClick={handleLogout}>Log Out</button>} 
         </div>
         </div>
       </div>
     </nav>
   )
-}
+} 

@@ -122,3 +122,20 @@ h1 {
   font-size: 20px;
 }
 
+.submit-button-style{
+  display: flex;
+  background-color: black;
+  border-radius: 1em;
+  padding: 10px;
+  color: white;
+  width: 200px;
+  justify-content: center;
+}
+
+.personal-style {
+  background-color: black;
+  border-radius: 1em;
+  padding: 10px;
+  color: white;
+  width: 200px;
+}

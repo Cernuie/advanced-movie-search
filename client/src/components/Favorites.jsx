@@ -56,6 +56,15 @@ export default function Favorites({ user, token, setUser, setToken }) {
     })
   }
 
+  const myStyle = {
+    backgroundColor: "black",
+    borderRadius: "1em",
+    padding: "10px",
+    color: "white",
+    width: "200px",
+    marginTop: "1em"
+  };
+
   return (
     <div className="flex-wrap">
       {favorites.map((movie, index) => {
@@ -68,7 +77,9 @@ export default function Favorites({ user, token, setUser, setToken }) {
             </li>
             {movie.Type === "series" && <li> Type: TV Series </li>}
             {movie.Type === "movie" && <li> Type: Movie </li>}
-            <button type="button" onClick={() => removeMediaFromFavoritesPage(movie.imdbID, index, movie.Title)}>
+            <button classname="personal-style" type="button" 
+            style={myStyle}
+            onClick={() => removeMediaFromFavoritesPage(movie.imdbID, index, movie.Title)}>
               {" "}
               Remove from Favorites{" "}
             </button>

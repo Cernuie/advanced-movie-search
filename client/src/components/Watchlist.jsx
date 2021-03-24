@@ -52,6 +52,15 @@ export default function Watchlist() {
     })
   }
 
+  const myStyle = {
+    backgroundColor: "black",
+    borderRadius: "1em",
+    padding: "10px",
+    color: "white",
+    width: "200px",
+    marginTop: "1em"
+  };
+
   return (
     <div className="flex-wrap">
       {watchList.map((movie, index) => {
@@ -64,7 +73,7 @@ export default function Watchlist() {
             </li>
             {movie.Type === "series" && <li> Type: TV Series </li>}
             {movie.Type === "movie" && <li> Type: Movie </li>}
-            <button type="button" onClick={() => removeMediaFromWatchListPage(movie.imdbID, index, movie.Title)}>
+            <button classname="personal-style" type="button" style={myStyle} onClick={() => removeMediaFromWatchListPage(movie.imdbID, index, movie.Title)}>
               {" "}
               Remove from WatchList{" "}
             </button>

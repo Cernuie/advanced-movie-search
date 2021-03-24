@@ -185,24 +185,24 @@ export default function MovieOverview() {
         <h2>{data.Title}</h2>
 
         {isFavorite !== "passed" ? (
-          <button type="button" onClick={() => convertDataToFavorites()}>
+          <button className="user-style" type="button" onClick={() => convertDataToFavorites()}>
             {" "}
             Add to Favorites{" "}
           </button>
         ) : (
-          <button type="button" onClick={() => deleteFavorite()}>
+          <button className="user-style" type="button" onClick={() => deleteFavorite()}>
             {" "}
             Remove from Favorites{" "}
           </button>
         )}
 
         {watchList !== "passed" ? (
-          <button type="button" onClick={() => convertDataToWatchList()}>
+          <button className="user-style" type="button" onClick={() => convertDataToWatchList()}>
             {" "}
             Add to Watch List{" "}
           </button>
         ) : (
-          <button type="button" onClick={() => deleteWatchList()}>
+          <button className="user-style" type="button" onClick={() => deleteWatchList()}>
             {" "}
             Remove from Watch List{" "}
           </button>
@@ -260,7 +260,7 @@ export default function MovieOverview() {
               value={text}
               onChange={(e) => setText(e.target.value)}
             />
-            <button className="flex" type="submit" onClick={validateReview}>
+            <button className="submit-button-style" type="submit" onClick={validateReview}>
               Submit
             </button>
           </form>
