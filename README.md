@@ -1,12 +1,32 @@
 # ASC Media Search Project 
 
-A database search engine for movies & TV shows to watch trailers, query ratings, and media details.
+A React App where users can search for movies & TV shows to watch trailers, query ratings, and media details.
+
+Client-Side hosted at: https://lhl-asc-media-search.herokuapp.com/
+
+May take a minute to load. Refresh the page after a minute (or if the page says application error) and the Herokuapp will be hosted.
 
 ## Final Product
 
 Browsing Media in the Homepage:
 
-![Homepage](https://github.com/chriskang24/public-gif-repo/blob/ed57dedb97a64cbc0d9937e1537b9ef267d3b716/asc-home-page.gif)
+![](https://github.com/chriskang24/public-gif-repo/blob/ed57dedb97a64cbc0d9937e1537b9ef267d3b716/asc-home-page.gif)
+
+Clicking for Media through backposters:
+
+![](https://github.com/chriskang24/public-gif-repo/blob/master/asc-carousel-click.gif)
+
+Searching for Media: 
+
+![](https://github.com/chriskang24/public-gif-repo/blob/master/asc-input-search.gif)
+
+Media Details Page:
+
+![](https://github.com/chriskang24/public-gif-repo/blob/master/asc-movie-details.gif)
+
+User Favourites & Watchlist Page:
+
+![](https://github.com/chriskang24/public-gif-repo/blob/master/asc-favorites.gif)
 
 ## Getting Started
 
