@@ -2,9 +2,9 @@
 
 A React App where users can search for movies & TV shows to watch trailers, query ratings, and media details.
 
-Client-Side hosted at: https://lhl-asc-media-search.herokuapp.com/
+Client-side App Demo hosted at: https://lhl-asc-media-search.herokuapp.com/
 
-May take a minute to load. Refresh the page after a minute (or if the page says application error) and the Herokuapp will be hosted.
+Disclaimer: May take a minute to load. Refresh the page after a minute (or if the page says application error) and the Herokuapp will be hosted.
 
 ## Final Product
 
