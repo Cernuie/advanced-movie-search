@@ -6,25 +6,43 @@ Client-side App Demo hosted at: https://lhl-asc-media-search.herokuapp.com/
 
 Disclaimer: May take a minute to load. Refresh the page after a minute (or if the page says application error) and the Herokuapp will be hosted.
 
+## Key Features
+- Search for TV Shows and Movies
+- Browse Daily Updated Media Results for 7 different queries (Now Playing, Most Popular, etc.) 
+- Watch trailers and find all media details for your search results
+- Add Media to your favorites list & watchlist 
+- Post user reviews and comments
+
+## Tech Stack
+
+### Front End
+ReactJS | Axios | React-Router | SASS | React-Carousel
+
+### Back End
+Node.js | Express | JWT Web Tokens | BCrypt
+
+### Database
+PostgreSQL
+
 ## Final Product
 
-Browsing Media in the Homepage:
+### Browsing Media in the Homepage:
 
 ![](https://github.com/chriskang24/public-gif-repo/blob/ed57dedb97a64cbc0d9937e1537b9ef267d3b716/asc-home-page.gif)
 
-Clicking for Media through backposters:
+### Media Details on Poster Click
 
 ![](https://github.com/chriskang24/public-gif-repo/blob/master/asc-carousel-click.gif)
 
-Searching for Media: 
+### Searching for Media: 
 
 ![](https://github.com/chriskang24/public-gif-repo/blob/master/asc-input-search.gif)
 
-Media Details Page:
+### Media Details Page:
 
 ![](https://github.com/chriskang24/public-gif-repo/blob/master/asc-movie-details.gif)
 
-User Favourites & Watchlist Page:
+### User Favourites & Watchlist Page:
 
 ![](https://github.com/chriskang24/public-gif-repo/blob/master/asc-favorites.gif)
 
